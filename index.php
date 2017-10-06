@@ -38,8 +38,11 @@
 
             <tr>
               <td>
-                <input type="text" name="" value="" placeholder="username or email">
+                <div>
+                    <input type="text" name="" value="" placeholder="username or email">
+                </div>
               </td>
+
             </tr>
 
             <tr>
@@ -51,7 +54,10 @@
                 
                   <input type="password" name="" value="" placeholder="password">
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 831b9ba4dc6aa73d874c369eb721f28583d63e77
 
               </td>
             </tr>
