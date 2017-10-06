@@ -5,13 +5,16 @@
     <title>Log in to TravelPedia</title>
   </head>
   <body>
-    <div class="container" id="loginpage-container">
-      <div class="loginpanel" id="log in panel" align="center">
-        <form class="" action="index.html" method="post">
+    <div class="container" id="loginpage-container" style="top: 40px;">
+      <div class="loginpanel" id="log in panel" align="center" width="100%"  >
+        <form class="" action="loginvalidate.php" method="post">
+          <h3>
+              Log in to TravelPedia!!!<br>
+              <small>I'm the one who travels</small>
+          </h3>
 
-          <h3>Log in to TravelPedia!!!</h3>
-          <small>I'm the one who travels</small>
-          <table>
+
+          <table  >
             <tr>
               <td>Enter Username or Email</td>
             </tr>
@@ -31,22 +34,22 @@
                 <input type="password" name="" value="" placeholder="password">
               </td>
             </tr>
-
-            <tr>
-              <td>
-                <input type="submit" name="" value="Log in" style="text-align:center,text-weigh:bold">
-              </td>
-            </tr>
-
-
             <tr>
               <td style="text-align:left">
                 <a href="#"><small>forget password?</small></a>
               </td>
             </tr>
 
-          </table>
+            <tr>
+              <td width="100%">
+                 <input type="submit" name="" value="Log in" >
+              </td>
+            </tr>
 
+
+
+
+          </table>
 
 
 
@@ -57,7 +60,6 @@
 
       </div>
 
-      <footer>travelpedia</footer>
 
     </div>
 
