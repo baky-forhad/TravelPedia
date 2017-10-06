@@ -3,8 +3,6 @@
   <head>
     <meta charset="utf-8">
     <title></title>
-    <link rel="stylesheet" href="https://portal.aiub.edu/Content/base?v=t74ME33IcTPLNcv-vSTDlqhfmWLRwM6BjhGDNppmPpo1">
-    <link rel="stylesheet" href="https://portal.aiub.edu/Content/dist/drunkenparrot/css/drunken-parrot.css">
 
     <style media="screen">
     .login-form {
@@ -19,14 +17,6 @@
   background-color: #ffffff;
 }
 
-.side-link {
-    position: absolute;
-    right: 10px;
-    top: 0;
-    z-index: 10;
-    font-size: 12px;
-    line-height: 45px;
-}
     </style>
 
   </head>
@@ -58,10 +48,10 @@
 
             <tr>
               <td>
-                <div class="">
+                
                   <input type="password" name="" value="" placeholder="password">
-                  <a href="#" class="side-link"><small>forget password?</small></a>
-                </div>
+
+
 
               </td>
             </tr>
