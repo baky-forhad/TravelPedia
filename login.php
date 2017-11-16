@@ -60,22 +60,20 @@
       </h2>
       <hr>
       <br>
+      <?php
+            session_start();
+            $_SESSION["IsloggedIn"]=False;
 
+      ?>
 
-        <form class="" action="index.php" method="post">
-
-
-
-
-
-
+        <form class="" action="loginvalidate.php" method="post">
 
           <table align="center">
 
             <tr>
               <td>
                 <div>
-                    <input type="text" name="" value="" placeholder="username or email">
+                    <input type="text" name="uname" value="" placeholder="username or email">
                 </div>
               </td>
 
@@ -83,7 +81,7 @@
 
             <tr>
               <td>
-                  <input type="password" name="" value="" placeholder="password">
+                  <input type="password" name="pass" value="" placeholder="password">
 
               </td>
             </tr>

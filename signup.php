@@ -61,32 +61,32 @@
                     </h2>
                     <hr>
                     <br>
-                <form class="" action="home.php" method="post">
+                <form class="" action="signupValidate.php" method="post">
                     <table align="center" >
 
                         <tr>
                             <td>
-                                <input type="email" name="" value="" placeholder="example@mail.com">
+                                <input type="email" name="email" value="" placeholder="example@mail.com">
                             </td>
                         </tr>
 
                         <tr>
                             <td>
-                                <input type="text" name="" value="" placeholder="jon_snow">
-                            </td>
-                        </tr>
-
-
-                        <tr>
-                            <td>
-                                <input type="password" name="" value="" placeholder="password">
+                                <input type="text" name="name" value="" placeholder="jon_snow">
                             </td>
                         </tr>
 
 
                         <tr>
                             <td>
-                                <input type="password" name="" value="" placeholder="confirm password">
+                                <input type="password" name="password" value="" placeholder="password">
+                            </td>
+                        </tr>
+
+
+                        <tr>
+                            <td>
+                                <input type="password" name="" value="confirmpassword" placeholder="re-enter password">
                             </td>
                         </tr>
 
