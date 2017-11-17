@@ -3,6 +3,7 @@
   <head>
     <meta charset="utf-8">
     <title>log in</title>
+    <link rel="stylesheet" href="css/bootstrap-grid.css">
 
     <style media="screen">
 
@@ -31,9 +32,9 @@
         right: 0;
         padding: 20px;
         border: 0px solid #dddddd;
-        opacity: 1;
-        filter: alpha(opacity=100);
-        <!--background-color: #ffffff;-->
+        opacity: .8;
+        filter: alpha(opacity=80);
+        background-color: #ffffff;
     }
     #join-link
     {
@@ -60,14 +61,17 @@
         background-color: red;
     }
 
+    body{
+      margin: 0;
+    }
 
 
     </style>
 
   </head>
-  <body style="background-color: rgb(227, 231, 232)">
+  <body>
 
-    <div class="bg">
+    <div class="container-fluid bg">
 
         <div class="login-form" style="top: 172px;">
 
@@ -90,7 +94,7 @@
                     <tr>
                         <td>
                             <div>
-                                <input type="text" name="uname" value="" placeholder="username or email">
+                                <input type="text" id="name" name="uname" value="" placeholder="username or email">
                             </div>
                         </td>
 

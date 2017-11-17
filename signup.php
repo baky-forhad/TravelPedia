@@ -5,6 +5,10 @@
         <title>Sign up</title>
         <style media="screen">
 
+        body{
+          margin: 0;
+        }
+
         div.bg
         {
             height:768px;
@@ -28,9 +32,9 @@
                 right: 0;
                 padding: 20px;
                 border: 0px solid #dddddd;
-                opacity: 1;
-                filter: alpha(opacity=100);
-                <!--background-color: #ffffff;-->
+                opacity: 0.8;
+                filter: alpha(opacity=80);
+                background-color: #ffffff;
             }
 
             input
