@@ -5,6 +5,22 @@
     <title>log in</title>
 
     <style media="screen">
+
+
+    div.bg
+    {
+        height:768px;
+        width: 100%;
+        background: url('resource/indexbg.jpeg') repeat;
+        background-size: cover;
+        background-position: center;
+        position: relative;
+        opacity: 0.9;
+        filter: alpha(opacity=90);
+
+
+    }
+
     .login-form
     {
         width: 75%;
@@ -14,8 +30,10 @@
         left: 0;
         right: 0;
         padding: 20px;
-        border: 1px solid #dddddd;
-        background-color: #ffffff;
+        border: 0px solid #dddddd;
+        opacity: 1;
+        filter: alpha(opacity=100);
+        <!--background-color: #ffffff;-->
     }
     #join-link
     {
@@ -38,8 +56,9 @@
     {
         width: 310px;
         font-weight: bold;
+        color:#ffffff;
+        background-color: red;
     }
-
 
 
 
@@ -48,75 +67,66 @@
   </head>
   <body style="background-color: rgb(227, 231, 232)">
 
-    <div>
+    <div class="bg">
 
-  <div class="login-form" style="top: 172px;">
+        <div class="login-form" style="top: 172px;">
 
-      <h2 align="center" style="margin:0px">
-          Log in to TravelPedia!!!
-          <small>
-              <h6  style="margin:0px" >I'm the one who travels </h6>
-          </small>
-      </h2>
-      <hr>
-      <br>
-      <?php
-            session_start();
-            $_SESSION["IsloggedIn"]=False;
+            <h2 align="center" style="margin:0px">
+                Log in to TravelPedia!!!
+                <small>
+                    <h6  style="margin:0px" >I'm the one who travels </h6>
+                </small>
+            </h2>
+            <hr>
+            <br>
+            <?php
+                session_start();
+                $_SESSION["IsloggedIn"]=False;
 
-      ?>
+            ?>
 
-        <form class="" action="loginvalidate.php" method="post">
+            <form class="" action="loginvalidate.php" method="post">
+                <table align="center">
+                    <tr>
+                        <td>
+                            <div>
+                                <input type="text" name="uname" value="" placeholder="username or email">
+                            </div>
+                        </td>
 
-          <table align="center">
+                    </tr>
 
-            <tr>
-              <td>
-                <div>
-                    <input type="text" name="uname" value="" placeholder="username or email">
-                </div>
-              </td>
+                    <tr>
+                        <td>
+                            <input type="password" name="pass" value="" placeholder="password">
+                        </td>
+                    </tr>
 
-            </tr>
-
-            <tr>
-              <td>
-                  <input type="password" name="pass" value="" placeholder="password">
-
-              </td>
-            </tr>
-
-            <tr>
-              <td>
-                <input id="btn-login" type="submit" name="" value="Log in">
-              </td>
-            </tr>
+                    <tr>
+                        <td>
+                            <input id="btn-login" type="submit" name="" value="Log in">
+                        </td>
+                    </tr>
 
 
-            <tr>
-              <td style="text-align:right">
-                <a href="#"><small>forget password?</small></a>
-              </td>
-            </tr>
+                    <tr>
+                        <td style="text-align:right">
+                            <a href="#"><small>forget password?</small></a>
+                        </td>
+                    </tr>
 
-          </table>
+                </table>
 
-        </form>
-        <br><hr>
+            </form>
+            <br><hr>
 
-        <p align="center">
-            New to TravelPedia?
-            <a id="join-link" href="signup.php"><b style="color:red">Join Now!<b></a>
-        </p>
-
-        <hr>
-
-
-
-
+            <p align="center">
+                <b>New to TravelPedia?</b>
+                <a id="join-link" href="signup.php"><b style="color:red; opacity:1.0">Join Now!<b></a>
+            </p>
+            <hr>
+        </div>
     </div>
-
-</div>
 
 
 
