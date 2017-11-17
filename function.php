@@ -8,7 +8,7 @@
 
     function isValidMail($email)
     {
-        return filter_var($email, FILTER_VALIDATE_EMAIL);            
+        return filter_var($email, FILTER_VALIDATE_EMAIL);
     }
 
 
@@ -28,11 +28,12 @@
             for($i=1; $i<$len; $i++){
                 if( !(($name[$i]>='a' && $name[$i]<='z') || ($name[$i]>='A' && $name[$i]<='Z')) )
                 {
-                    $valid = false;
-                    break;
+                    return false;
+
                 }
             }
         }
+        return true;
 
     }
 
@@ -61,6 +62,25 @@
     function isValidDate($day,$month,$year)
     {
         return checkdate($month,$day,$year);
+    }
+
+    function isValidUserName($Uname)
+    {
+        $length = strlen($Uname);
+        if( !(($Uname[0]>='a' && $Uname[0]<='z') || ($Uname[0]>='A' && $Uname[0]<='Z') ) ){
+            return false;
+        }
+        if ($Uname<6)
+        {
+            return false;
+        }
+        for($i=1; $i<$length; $i++){
+            if( !(($Uname[$i]>='a' && $Uname[$i]<='z') || ($Uname[$i]>='A' && $Uname[$i]<='Z') || $Uname[$i]=='-' || $Uname=='_') )
+            {
+                return false;
+
+            }
+        }
     }
 
 ?>
