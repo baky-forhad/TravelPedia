@@ -108,7 +108,7 @@
 
                     <tr>
                         <td>
-                            <input id="btn-login" type="submit" name="" value="Log in">
+                            <input id="btn-login" type="submit" name="sbt" value="Log in">
                         </td>
                     </tr>
 
