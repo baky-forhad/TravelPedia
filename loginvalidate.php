@@ -9,12 +9,21 @@
     <?php
       session_start();
       include 'sqlFunction.php';
+
+
       if (isLoginSuccesful($_POST['uname'],$_POST['pass'])) {
         $_SESSION['IsloggedIn']=true;
         header("Location:createpost.php");
       }
+      else
+      {
+        if (!isset($_POST['sbt'])) {
+          header("Location:login.php");
+        }
+      }
 
      ?>
+
      <script type="text/javascript">
        alert("false password");
        window.location = 'login.php';
