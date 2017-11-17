@@ -85,7 +85,7 @@
 
             ?>
 
-            <form class="" action="loginvalidate.php" method="post">
+            <form  action="loginvalidate.php" method="post">
                 <table align="center">
                     <tr>
                         <td>
