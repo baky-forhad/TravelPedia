@@ -99,12 +99,12 @@
                         </tr>
                         <tr>
                             <td>
-                                <input type="password" name="" value="" placeholder="re-enter password">
+                                <input type="password" name="confirmpassword" value="" placeholder="re-enter password">
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                <input id="btn-signup" align="center"  type="submit" name="" value="Sign up">
+                                <input id="btn-signup" align="center"  type="submit" name="sbt" value="Sign up">
                             </td>
                         </tr>
                     </table>

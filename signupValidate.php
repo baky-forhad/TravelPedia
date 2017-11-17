@@ -8,8 +8,10 @@
         <h2> Checking signup complletation </h2>
 
         <?php
+
+            include 'function.php';
             $isValid=False;
-            $query="INSERT INTO ( ' ";
+            $query="INSERT INTO usertable VALUES ( NULL, ";
             $errorMsg="you must meet below conditions---";
 
 
@@ -18,13 +20,15 @@
             $password = $_POST["password"];
             $confirmpassword = $_POST["confirmpassword"];
 
-            if (filter_var($email, FILTER_VALIDATE_EMAIL))
+            print_r($_POST);
+
+            if (filter_var($mail, FILTER_VALIDATE_EMAIL))
             {
-                if(strlen($username)>=8)
+                if(strlen($username)>=3)
                 {
-                    if (strlen($password) >=8 and ($password===$confirmpassword)
+                    if (isPasswordValid($password,$confirmpassword))
                     {
-                        $query .= $email."' , '" .$username."' , '".$password."')";
+                        $query .= "'$username', '$mail', NULL, NULL, '$password', NULL, '1')";
                         $isValid=True;
                     }
                     else {

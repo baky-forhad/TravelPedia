@@ -1,5 +1,5 @@
 <?php
-    session_start();
+    
     function isloggedIn()
     {
         return ($_SESSION["IsloggedIn"] && isset($_SESSION["IsloggedIn"]) )==True ? True : False;
@@ -8,7 +8,7 @@
 
     function isValidMail($email)
     {
-        return filter_var($email, FILTER_VALIDATE_EMAIL);            
+        return filter_var($email, FILTER_VALIDATE_EMAIL);
     }
 
 

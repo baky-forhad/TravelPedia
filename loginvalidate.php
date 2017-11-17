@@ -9,11 +9,14 @@
     <?php
       session_start();
       include 'sqlFunction.php';
+
+
       if (isLoginSuccesful($_POST['uname'],$_POST['pass'])) {
         $_SESSION['IsloggedIn']=true;
         header("Location:createpost.php");
       }
-      else {
+      else
+      {
         if (!isset($_POST['sbt'])) {
           header("Location:login.php");
         }
