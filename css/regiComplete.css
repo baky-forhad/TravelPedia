@@ -1,0 +1,43 @@
+.login-form
+{
+    width: 75%;
+    max-width: 450px;
+    margin: auto;
+    position: absolute;
+    left: 0;
+    right: 0;
+    padding: 20px;
+    border: 1px solid #dddddd;
+    background-color: #ffffff;
+}
+#join-link
+{
+    text-decoration: none;
+    text-decoration-color: red;
+}
+
+input
+{
+    height: 30px;
+    width: 300px;
+    margin-top: 7px;
+    margin-bottom: 7px;
+    font-size: 12pt;
+    padding-left: 6px;
+
+
+}
+select{
+  height: 30px;
+  width: 100px;
+}
+.r1
+{
+  height: 20px;
+  width: 100px;
+}
+#btn-login
+{
+    width: 310px;
+    font-weight: bold;
+}
