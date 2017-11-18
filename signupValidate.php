@@ -10,6 +10,8 @@
         <?php
 
             include 'function.php';
+
+            include 'sqlFunction.php';
             $isValid=False;
             $query="INSERT INTO usertable VALUES ( NULL, ";
             $errorMsg="you must meet below conditions---";
@@ -28,7 +30,7 @@
                 {
                     if (isPasswordValid($password,$confirmpassword))
                     {
-                        $query .= "'$username', '$mail', NULL, NULL, '$password', NULL, '1')";
+                        $query .= "'$username', '$mail', NULL, NULL, '$password', NULL, '1',NULL,NULL,'N')";
                         $isValid=True;
                     }
                     else {
@@ -49,9 +51,29 @@
             if($isValid)
             {
                 echo $query;
+                  if(isSignupSuccesful($query)){
+                    session_start();
+                    $_SESSION['IsloggedIn']=True;
+                    $_SESSION['userName']=$username;
+                    header("Location:registration_complete.php");
+
+                	}
+                  else {
+                    ?>
+                    <script type="text/javascript">
+                      alert("Username/Email already exist!");
+                      window.location = 'signup.php';
+                    </script>
+                    <?php
+                  }
+
+                  //header("Location:signup.php");
+
+
             }
             else
             {
+              header("Location:signup.php");
                 echo $errorMsg;
 
             }

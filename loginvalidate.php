@@ -18,7 +18,7 @@
       else
       {
         if (!isset($_POST['sbt'])) {
-          header("Location:login.php");
+          header("Location:createpost.php");
         }
       }
 
