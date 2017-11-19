@@ -1,34 +1,44 @@
 <?php
   session_start();
+  $errorMsg="";
   if ($_SESSION["IsloggedIn"]!=True) {
     header("Location:login.php");
   }
   else {
     if ($_POST) {
       include 'function.php';
-      $errorMsg="";
+
       $firstName = $_POST['FirstName'];
       $lastName = $_POST['LastName'];
-      $gender = $_POST['Gender'];
+
       $phone = $_POST['Phone'];
       $day = $_POST['Day'];
       $month = $_POST['Month'];
       $year = $_POST['Year'];
 
-      if (isValidName($firstName) || isValidName($lastName)) {
+      if (isValidName($firstName) && isValidName($lastName)) {
         if (isset($_POST['Gender'])) {
-          if (preg_match('^(?:\+?88)?01[15-9]\d{8}$', $phone)) {
+          $gender = $_POST['Gender'];
+          if (preg_match("/^(?:\+?88)?01[15-9]\d{8}$/", $phone)) {
             if (isValidDate($day,$month,$year)) {
-              
+              $profile = array('firstName' => $firstName ,'lastName' => $lastName,'gender'=>$gender,'phone'=>$phone,'day'=>$day,'month'=>$month,'year'=>$year);
+              $_SESSION["profile"] = $profile;
               header("Location:registrationPic.php");
             }
+            else {
+              $errorMsg = "Invalid Date";
+            }
+          }
+          else {
+            $errorMsg = "Invalid Phone Number!";
           }
         }
+        else {
+          $errorMsg = "Gender not selected!";
+        }
       }
-
-
-      if (condition) {
-        # code...
+      else {
+        $errorMsg = "Name not valid!";
       }
     }
   }
@@ -45,6 +55,13 @@
     <link rel="stylesheet" href="css/regiComplete.css">
 </head>
 <body style="background-color: rgb(227, 231, 232)">
+  <?php if ($errorMsg !== "") { ?>
+  <script type="text/javascript">
+
+    alert("<?php echo $errorMsg; ?>");
+
+  </script>
+<?php } ?>
     <div>
         <div class="login-form" style="top: 120px;">
             <h2 align="center" style="margin:0px">
