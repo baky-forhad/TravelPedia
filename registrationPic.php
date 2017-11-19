@@ -1,3 +1,61 @@
+<?php
+  session_start();
+
+
+  $errorMsg="";
+  if ($_SESSION["IsloggedIn"]!=True) {
+    header("Location:login.php");
+  }
+  else {
+    if ($_POST) {
+      include 'function.php';
+
+      if(isset($_FILES['profilePic']))
+      {
+          $IsValid =True;
+          //$imageName=$_POST["ImageName"];
+          $file_name = $_FILES['profilePic']['name'];
+          $file_size =$_FILES['profilePic']['size'];
+          $file_tmp =$_FILES['profilePic']['tmp_name'];
+          $file_type=$_FILES['profilePic']['type'];
+          $file_ext=explode('.',$file_name);
+          $file_ext=strtolower(end($file_ext));
+          $validTypes= array("jpeg","jpg","png");
+          if(!in_array($file_ext,$validTypes))
+          {
+              $IsValid=False;
+          }
+          // if(file_exists("images/".$imageName."jpeg"))
+          // {
+          //     $IsValid=False;
+          // }
+          // if(strlen($imageName)==0)
+          // {
+          //     $IsValid=False;
+          // }
+
+          if($IsValid)
+          {
+              move_uploaded_file($file_tmp,"images/".$_SESSION["userName"].".jpeg");
+              $_SESSION['file'] = "images/".$_SESSION["userName"].".jpeg";
+
+              header("Location:registrationPic.php");
+              echo "you changed your pic to this<br>";
+
+
+          }
+          else
+          {
+              $errorMsg = "not a valid file type or file with same name exist";
+
+          }
+
+
+      }
+    }
+  }
+?>
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -8,7 +66,13 @@
 
   </head>
   <body style="background-color: rgb(227, 231, 232)">
+    <?php if ($errorMsg !== "") { ?>
+    <script type="text/javascript">
 
+      alert("<?php echo $errorMsg; ?>");
+
+    </script>
+  <?php } ?>
     <div>
 
   <div class="login-form" style="top: 120px;">
@@ -23,7 +87,7 @@
       <br>
 
 
-        <form class="" action="server.php" method="post" enctype="multipart/form-data">
+        <form class="" action="registrationPic.php" method="post" enctype="multipart/form-data">
 
 
 
@@ -36,7 +100,7 @@
             <tr>
               <td>
                 <div>
-                    <img src="resource/images.jpg" alt="No image" width="310px">
+                    <img src="<?php echo $_SESSION['file']; ?>" alt="No image" width="310px">
                 </div>
               </td>
 
@@ -50,7 +114,7 @@
             </tr>
             <tr>
               <td>
-                <input id="btn-login" type="submit" name="" value="Upload">
+                <input id="btn-login" type="submit" name="submit" value="Upload">
               </td>
             </tr>
 
@@ -63,8 +127,8 @@
         <br><hr>
 
         <p align="center">
-            Want to fill these later??
-            <a id="join-link" href="signup.php"><b style="color:red">Skip Now!<b></a>
+            Uploading picture succed??
+            <a id="join-link" href="updateProfile.php"><b style="color:red">Complete Profile!<b></a>
         </p>
 
         <hr>
