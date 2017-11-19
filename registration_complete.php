@@ -1,4 +1,4 @@
-<?php
+for<?php
   session_start();
   if ($_SESSION["IsloggedIn"]!=True) {
     header("Location:login.php");
@@ -19,7 +19,7 @@
         if (isset($_POST['Gender'])) {
           if (preg_match('^(?:\+?88)?01[15-9]\d{8}$', $phone)) {
             if (isValidDate($day,$month,$year)) {
-              
+
               header("Location:registrationPic.php");
             }
           }

@@ -89,7 +89,7 @@
 
             ?>
 
-            <form  action="loginvalidate.php" method="post">
+            <form  action="loginvalidate.php" method="post" onsubmit="">
                 <table align="center">
                     <tr>
                         <td>
@@ -102,7 +102,7 @@
 
                     <tr>
                         <td>
-                            <input type="password" name="pass" value="" placeholder="password">
+                            <input type="password"  id="pass" name="pass" value="" placeholder="password">
                         </td>
                     </tr>
 
@@ -133,7 +133,9 @@
     </div>
 
 
+    <script src="js/formValidate.js">
 
+    </script>
 
   </body>
 </html>
