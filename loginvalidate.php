@@ -5,8 +5,10 @@
         <title></title>
     </head>
     <body>
+        <!--testing javascript-->
+        <h3>log in validated with js</h3>
 
-    <?php
+    <!-- <?php
       session_start();
       include 'sqlFunction.php';
 
@@ -30,5 +32,5 @@
      </script>
 
 
-    </body>
+    </body> -->
 </html>

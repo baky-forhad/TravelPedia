@@ -89,12 +89,19 @@
 
             ?>
 
-            <form  action="loginvalidate.php" method="post" onsubmit="">
+            <form  action="loginvalidate.php" method="post" onSubmit="return validForm();">
                 <table align="center">
                     <tr>
                         <td>
                             <div>
-                                <input type="text" id="name" name="uname" value="" placeholder="username or email">
+                                <input type="text" id="uname" name="uname" value=""
+                                placeholder="username or email"
+                                oninput="userNameValid()"
+                                onblur="userNameValid()"
+                                onmouseover="passwordValid()"
+                                onmouseout="passwordValid()"
+
+                                >
                             </div>
                         </td>
 
@@ -102,7 +109,13 @@
 
                     <tr>
                         <td>
-                            <input type="password"  id="pass" name="pass" value="" placeholder="password">
+                            <input type="password"  id="pass" name="pass" value=""
+                            placeholder="password"
+                            oninput="passwordValid()"
+                            onblur="passwordValid()"
+                            onmouseover="userNameValid()"
+                            onmouseout="userNameValid()"
+                            >
                         </td>
                     </tr>
 
@@ -133,7 +146,7 @@
     </div>
 
 
-    <script src="js/formValidate.js">
+    <script src="js/logInValidate.js">
 
     </script>
 

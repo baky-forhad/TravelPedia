@@ -21,12 +21,8 @@ for<?php
           $gender = $_POST['Gender'];
           if (preg_match("/^(?:\+?88)?01[15-9]\d{8}$/", $phone)) {
             if (isValidDate($day,$month,$year)) {
-<<<<<<< HEAD
-
-=======
               $profile = array('firstName' => $firstName ,'lastName' => $lastName,'gender'=>$gender,'phone'=>$phone,'day'=>$day,'month'=>$month,'year'=>$year);
               $_SESSION["profile"] = $profile;
->>>>>>> b63aebb82a6ded6d9a1721ed7729187cf3e6408e
               header("Location:registrationPic.php");
             }
             else {
