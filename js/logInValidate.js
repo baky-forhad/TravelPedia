@@ -47,26 +47,12 @@ function validForm()
 
 function userNameValid()
 {
-    if(uname.value.length<6)
-    {
-        incorrect(uname);
-    }
-    else
-    {
-        correct(uname);
-    }
+    uname.value.length<6?incorrect(uname): correct(uname);
 
 }
 function passwordValid()
 {
-    if(pass.value.length<8)
-    {
-        incorrect(pass);
-    }
-    else
-    {
-        correct(pass);
-    }
+    pass.value.length<8 ? incorrect(pass):correct(pass);
 
 }
 
