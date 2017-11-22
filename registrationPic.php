@@ -125,7 +125,8 @@
 
         </form>
         <br><hr>
-
+      
+      
         <p align="center">
             Uploading picture succed??
             <a id="join-link" href="updateProfile.php"><b style="color:red">Complete Profile!<b></a>

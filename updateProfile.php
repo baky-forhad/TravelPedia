@@ -8,11 +8,17 @@ $phone = $_SESSION['profile']['phone'];
 $day = $_SESSION['profile']['day'];
 $month = $_SESSION['profile']['month'];
 $year = $_SESSION['profile']['year'];
+$filename = $_SESSION['file'];
+$userName = $_SESSION['userName'];
+
+$dob = $year.'-'.$month.'-'.$day;
+$gender = $_SESSION['profile']['gender'];
 
 if (isset($_SESSION['file'])) {
-  $sql = "UPDATE `usertable` SET `firstName` = '$firstName', `lastName` = '$lastName', `profilePicLink` = '$_SESSION["userName"]', `phone` = '$phone', `dob` = '2017-11-09', `gender` = 'F' WHERE `usertable`.`userId` = 7;";
+  print_r($_SESSION);
+  $sql = "UPDATE `usertable` SET `firstName` = '$firstName', `lastName` = '$lastName', `profilePicLink` = '$filename', `phone` = '$phone', `dob` = '$dob', `gender` = '$gender' WHERE `usertable`.`userName` = '$userName';";
   if (isSignupSuccesful($sql)) {
-    header("Location:index.php");
+    //header("Location:index.php");
   }
 }
 else {
