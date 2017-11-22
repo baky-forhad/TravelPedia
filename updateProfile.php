@@ -26,7 +26,7 @@ else {
   <script type="text/javascript">
       alert("Upload a picture first!")
       window.location = "registrationPic.php";
-  </script>
+  </script>-
   <?php
 }
  ?>

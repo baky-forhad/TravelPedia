@@ -98,8 +98,8 @@
                                 placeholder="username or email"
                                 oninput="userNameValid()"
                                 onblur="userNameValid()"
-                                onmouseover="passwordValid()"
-                                onmouseout="passwordValid()"
+                                onmouseover="userNameValid()"
+                                onmouseout="userNameValid()"
 
                                 >
                             </div>
@@ -113,8 +113,8 @@
                             placeholder="password"
                             oninput="passwordValid()"
                             onblur="passwordValid()"
-                            onmouseover="userNameValid()"
-                            onmouseout="userNameValid()"
+                            onmouseover="passwordValid()"
+                            onmouseout="passwordValid()"
                             >
                         </td>
                     </tr>

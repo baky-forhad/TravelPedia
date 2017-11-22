@@ -17,7 +17,7 @@
     {
         $len = strlen($name);
         $valid= true;
-        if($len<2)
+        if($len<4)
         {
             return false;
         }
