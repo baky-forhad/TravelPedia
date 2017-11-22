@@ -8,6 +8,11 @@
     <title></title>
   </head>
   <body>
+    <?php function isLoggedInn()
+    {
+        //session_start();
+        return ($_SESSION["IsloggedIn"] && isset($_SESSION["IsloggedIn"]) )==True ? True : False;
+    } ?>
     <nav>
       <div class="toggle">
         <i class="fa fa-bars" aria-hidden="true"></i>
@@ -19,7 +24,15 @@
         <li> <a href="#">Services</a> </li>
         <li> <a href="#">Portfolio</a> </li>
         <li> <a href="#">Contact</a> </li>
-        <li class="noti"> <a href="#">Login</a> </li>
+        <li class="noti"> <a href="#"> <span id="login"><?php
+        if (isLoggedInn()) {
+          echo "Logout";
+        }
+        else {
+          echo "Login";
+        }
+
+         ?></span></a> </li>
         <li class="noti"> <a href="#"><i class="fa fa-bell" aria-hidden="true"></i></a> </li>
 
       </ul>

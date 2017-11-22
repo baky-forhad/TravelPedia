@@ -13,7 +13,7 @@
 
             include 'sqlFunction.php';
             $isValid=False;
-            $query="INSERT INTO usertable VALUES ( NULL, ";
+            $query="INSERT INTO user VALUES ( NULL, ";
             $errorMsg="you must meet below conditions---";
 
 

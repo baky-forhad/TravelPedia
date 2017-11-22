@@ -6,7 +6,7 @@ include 'dbconnect.php';
   {
 
     $ar=array();
-    $sql = "SELECT password,userId,userName FROM usertable where (userName='$name' or email='$name')";
+    $sql = "SELECT password,userId,userName FROM user where (userName='$name' or email='$name')";
 
     $result = mysqli_query(getConnection(), $sql)or die(mysqli_error()."baal");
     //print_r($result);

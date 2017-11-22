@@ -72,7 +72,7 @@
         <?php
         include 'function.php';
         //include 'navbar.php';
-        
+
         if(IsloggedIn())
         {
         ?>
@@ -196,6 +196,6 @@
             header("Location:login.php");
         }
         ?>
-
+        
     </body>
 </html>

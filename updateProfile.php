@@ -16,7 +16,7 @@ $gender = $_SESSION['profile']['gender'];
 
 if (isset($_SESSION['file'])) {
   print_r($_SESSION);
-  $sql = "UPDATE `usertable` SET `firstName` = '$firstName', `lastName` = '$lastName', `profilePicLink` = '$filename', `phone` = '$phone', `dob` = '$dob', `gender` = '$gender' WHERE `usertable`.`userName` = '$userName';";
+  $sql = "UPDATE `user` SET `firstName` = '$firstName', `lastName` = '$lastName', `profilePicLink` = '$filename', `phone` = '$phone', `dob` = '$dob', `gender` = '$gender' WHERE `user`.`userName` = '$userName';";
   if (isSignupSuccesful($sql)) {
     //header("Location:index.php");
   }
