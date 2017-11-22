@@ -80,31 +80,62 @@
                 </h2>
                 <hr>
                 <br>
-                <form class="" action="signupValidate.php" method="post">
+                <form class="" action="signupValidate.php" method="post" onSubmit="return validSignUp();">
                     <table align="center" >
+
                         <tr>
                             <td>
-                                <input type="email" name="email" value="" placeholder="example@mail.com">
+                                <input type="text" name="name" id="Uname"
+                                value="" placeholder="jon_snow"
+                                oninput="validUserName()"
+                                onblur="validUserName()"
+                                onmouseover="validUserName()"
+                                onmouseout="validUserName()"
+
+                                >
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                <input type="text" name="name" value="" placeholder="jon_snow">
+                                <input type="email" name="email" id="email"
+                                value="" placeholder="example@mail.com"
+                                oninput="validMailInput()"
+                                onblur="validMailInput()"
+                                onmouseover="validMailInput()"
+                                onmouseout="validMailInput()"
+
+                                >
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                <input type="password" name="password" value="" placeholder="password">
+                                <input type="password" name="password" id="password"
+                                value="" placeholder="password"
+                                oninput="ValidPassword()"
+                                onblur="ValidPassword()"
+                                onmouseover="ValidPassword()"
+                                onmouseout="ValidPassword()"
+
+                                >
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                <input type="password" name="confirmpassword" value="" placeholder="re-enter password">
+                                <input type="password"
+                                name="confirmpassword" value=""
+                                id="confirmPassword"
+                                placeholder="re-enter password"
+                                onblur="confrimPasswordMatched()"
+                                oninput="confrimPasswordMatched()"
+                                onmouseover="confrimPasswordMatched()"
+                                onmouseout="confrimPasswordMatched()"
+                                >
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                <input id="btn-signup" align="center"  type="submit" name="sbt" value="Sign up">
+                                <input id="btn-signup" align="center"
+                                type="submit" name="sbt" value="Sign up">
                             </td>
                         </tr>
                     </table>
@@ -117,5 +148,6 @@
                 <hr>
             </div>
         </div>
+        <script src="js/signupValidate.js"></script>
     </body>
 </html>

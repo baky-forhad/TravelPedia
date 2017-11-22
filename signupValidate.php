@@ -26,7 +26,7 @@
 
             if (filter_var($mail, FILTER_VALIDATE_EMAIL))
             {
-                if(strlen($username)>=3)
+                if(strlen($username)>=6)
                 {
                     if (isPasswordValid($password,$confirmpassword))
                     {
