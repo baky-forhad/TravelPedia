@@ -80,17 +80,18 @@
                 </h2>
                 <hr>
                 <br>
-                <form class="" action="signupValidate.php" method="post" onSubmit="return validSignUp();">
+                <form class="" action="signupValidate.php" method="post"
+                onSubmit="validSignUp()">
                     <table align="center" >
 
                         <tr>
                             <td>
                                 <input type="text" name="name" id="Uname"
                                 value="" placeholder="jon_snow"
-                                oninput="validUserName()"
-                                onblur="validUserName()"
-                                onmouseover="validUserName()"
-                                onmouseout="validUserName()"
+                                oninput="validUserName();"
+                                onblur="validUserName();"
+                                onmouseover="validUserName();"
+                                onmouseout="validUserName();"
 
                                 >
                             </td>
@@ -99,10 +100,10 @@
                             <td>
                                 <input type="email" name="email" id="email"
                                 value="" placeholder="example@mail.com"
-                                oninput="validMailInput()"
-                                onblur="validMailInput()"
-                                onmouseover="validMailInput()"
-                                onmouseout="validMailInput()"
+                                oninput="validMail()"
+                                onblur="validMail()"
+                                onmouseover="validMail()"
+                                onmouseout="validMail()"
 
                                 >
                             </td>
@@ -121,14 +122,12 @@
                         </tr>
                         <tr>
                             <td>
-                                <input type="password"
-                                name="confirmpassword" value=""
-                                id="confirmPassword"
+                                <input type="password" name="confirmpassword"
+                                id="cPassword"
                                 placeholder="re-enter password"
-                                onblur="confrimPasswordMatched()"
-                                oninput="confrimPasswordMatched()"
-                                onmouseover="confrimPasswordMatched()"
-                                onmouseout="confrimPasswordMatched()"
+                                oninput="confirmPassword()"
+                                onmouseover ="confirmPassword()"
+
                                 >
                             </td>
                         </tr>

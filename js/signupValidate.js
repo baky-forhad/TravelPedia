@@ -1,46 +1,55 @@
-
 function validSignUp()
 {
+    return false;
 
 }
-
-
-
-function validMailInput()
-{
-    validMail()? correct(this) : incorrect(this);
-}
-
-
-
 
 function validMail()
 {
     var mail = document.getElementById('email');
-    if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(mail.value))
-        return  true;
-    return false;
-
+    var reg=/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    mail.value.match(reg) ? correct(mail):incorrect(mail);
 
 }
 function validUserName()
 {
     var uname = document.getElementById('Uname');
-    if(uname.value.length<6)
-    {
-        incorrect(this);
-        return  false;
-    }
-    return true;
+    uname.value.length<6?incorrect(uname):correct(uname);
 
 }
 function ValidPassword()
 {
-
+    var pass = document.getElementById('password');
+    var reg = /(?=.*?[a-z])(?=.*?[A-Z])(?=.*?[0-9]).{8,}/;
+    pass.value.match(reg)?correct(pass):incorrect(pass);
 
 }
-function confirmPasswordMatched()
+
+function confirmPassword()
 {
+    var pass = document.getElementById('password');
+    var cpass = document.getElementById('cPassword');
+    // var reg = /(?=.*?[a-z])(?=.*?[A-Z])(?=.*?[0-9]).{8,}/;
+    // if(cpass.value.match(reg))
+    // {
+    //     console.log("ami ekhane");
+    //     if (pass.value == cpass.value)
+    //     {
+    //         correct(cpass);
+    //     }
+    //     else
+    //     {
+    //         incorrect(cpass);
+    //
+    //     }
+    //
+    // }
+    // else{
+    //     incorrect(cpass);
+    // }
+    //pass.value == cpass.value ? correct(cpass):incorrect(cpass);
+    var reg = /(?=.*?[a-z])(?=.*?[A-Z])(?=.*?[0-9]).{8,}/;
+    cpass.value == pass.value ?correct(cpass):incorrect(cpass);
 
 }
 
