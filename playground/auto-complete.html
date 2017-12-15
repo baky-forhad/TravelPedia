@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Simple Map</title>
+    <meta name="viewport" content="initial-scale=1.0">
+    <link rel="stylesheet" href="css/bootstrap-grid.css">
+    <meta charset="utf-8">
+    <style>
+      #map {
+        height: 400px;
+        width: 400PX;
+        background-color: grey;
+       }
+    </style>
+  </head>
+  <body>
+
+
+    <div class="container">
+        <form>
+
+            <div class="form-group row">
+                <label for="location" class="col-sm-2 col-form-label">Location</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="location" placeholder="">
+                </div>
+                <br>
+                <p>Summary:</p>
+                <input type="text" name="summary" placeholder="Summary" id="sum" >
+                <p>Temperature:</p>
+                <input type="text" name="lattitude" id="cityLat" placeholder="Temperature" class="form-control" required="required"/>
+                <p>FeelsLike:</p>
+                <input type="text" name="longitude" id="cityLng" placeholder="FeelsLike" class="form-control" required="required"/>
+
+            </div>
+
+        </form>
+    </div>
+
+    <script>
+        var lat;
+        var lng;
+        function activatePlacesSearch()
+        {
+            var input = document.getElementById('location')
+            var autocomplete = new google.maps.places.Autocomplete(input);
+            google.maps.event.addListener(autocomplete, 'place_changed', function ()
+            {
+              var place = autocomplete.getPlace();
+              lat = place.geometry.location.lat();
+              lng = place.geometry.location.lng();
+
+              var apiKey       = '0b6726d08b07065962dd6cd45d54bbfd',
+        			url          = 'https://api.darksky.net/forecast/',
+        			api_call     = url + apiKey + "/" + lat + "," + lng + "?extend=hourly&callback=?";
+
+              $.getJSON(api_call, function(forecast) {
+                  document.getElementById('sum').value = forecast.currently.summary;
+                  document.getElementById('cityLat').value = forecast.currently.temperature;
+                  document.getElementById('cityLng').value = forecast.currently.apparentTemperature;
+                  //console.log(forecast);
+              });
+
+            });
+
+
+        }
+
+
+
+    </script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js'></script>
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBcYc38cBGLlVJrFE-WTn_K3D2ACzAGvOc&libraries=places&callback=activatePlacesSearch"
+    ></script>
+
+  </body>
+</html>
