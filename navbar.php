@@ -11,7 +11,8 @@
     <?php function isLoggedInn()
     {
         //session_start();
-        return ($_SESSION["IsloggedIn"] && isset($_SESSION["IsloggedIn"]) )==True ? True : False;
+        return true;
+        //return ($_SESSION["IsloggedIn"] && isset($_SESSION["IsloggedIn"]) )==True ? True : False;
     } ?>
     <nav>
       <div class="toggle">
