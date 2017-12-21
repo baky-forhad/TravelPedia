@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Simple Map</title>
+    <meta name="viewport" content="initial-scale=1.0">
+    <link rel="stylesheet" href="css/bootstrap-grid.css">
+    <meta charset="utf-8">
+    <style>
+      #map {
+        height: 400px;
+        width: 400PX;
+        background-color: grey;
+       }
+    </style>
+  </head>
+  <body>
+
+
+    <div class="container">
+        <form>
+
+            <div class="form-group row">
+                <label for="location" class="col-sm-2 col-form-label">Location</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="location" placeholder="">
+                </div>
+                <input type="text" name="lattitude" id="cityLat" placeholder="Lattitude" class="form-control" required="required"/>
+<input type="text" name="longitude" id="cityLng" placeholder="Longitude" class="form-control" required="required"/>
+
+            </div>
+
+        </form>
+    </div>
+
+    <script>
+        function activatePlacesSearch()
+        {
+            var input = document.getElementById('location')
+            var autocomplete = new google.maps.places.Autocomplete(input);
+            google.maps.event.addListener(autocomplete, 'place_changed', function ()
+            {
+            var place = autocomplete.getPlace();
+            document.getElementById('cityLat').value = place.geometry.location.lat();
+            document.getElementById('cityLng').value = place.geometry.location.lng();
+
+
+            });
+
+        }
+
+
+    </script>
+    <script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBcYc38cBGLlVJrFE-WTn_K3D2ACzAGvOc&libraries=places&callback=activatePlacesSearch"
+    ></script>
+  </body>
+</html>

@@ -112,7 +112,7 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-md-8 offset-md-2">
-                                        <input type="text" name="locationID" value="" placeholder="select a location">
+                                        <input type="text" name="locationID" id="location" value="" placeholder="select a location">
                                     </div>
                                 </div>
 
@@ -196,6 +196,6 @@
             header("Location:login.php");
         }
         ?>
-        
+
     </body>
 </html>

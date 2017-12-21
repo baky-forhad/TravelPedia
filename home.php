@@ -4,6 +4,16 @@
         <meta charset="utf-8">
         <title>Home</title>
         <link rel="stylesheet" href="css/bootstrap-grid.css">
+        <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+
         <style>
          .round {
                 border-radius: 50%;
@@ -94,11 +104,111 @@
                 </div>
 
                 <div class="container-fluid">
+
+
+                    <!-- //postloop -->
                     <div class="row">
-                        <div class="col-md-8" style="background-color:yellow;">
-                            <div class="col-md-10 offset-md-1 " style="background-color:red;">
-                                posts
-                                <br><br><br><br><br><br><br><br><br><br><br>
+                        <div class="col-md-8">
+                            <div class="col-md-10 offset-md-1" >
+                                <h2>
+                            	<a href="#">POST TITLE</a>
+            					</h2>
+            					<p class="lead">
+            						by <a href="#">TRAVELER 112</a>
+            					</p>
+                                <p>
+                                    with <i class="fa fa-tag" aria-hidden="true"></i> <a href="#">dipto</a>  <a href="#">baky</a>
+                                </p>
+            					<p>
+            						<i class="fa fa-clock-o" aria-hidden="true"></i>Posted on August 28, 2013 at 10:00 PM
+            					</p>
+                                <p>
+            						<i class="fa  fa-map-marker" aria-hidden="true"></i>shajek valley
+            					</p>
+            					<hr>
+            					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore, veritatis, tempora, necessitatibus inventore nisi quam quia repellat ut tempore laborum possimus eum dicta id animi corrupti debitis ipsum officiis rerum.</p>
+                                <!-- //image loop -->
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="thumbnail">
+                                            <img src="" alt="no image">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="thumbnail">
+                                            <img src="" alt="no image">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="thumbnail">
+                                            <img src="" alt="no image">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="thumbnail">
+                                            <img src="" alt="no image">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="thumbnail">
+                                            <img src="" alt="no image">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="thumbnail">
+                                            <img src="" alt="no image">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="thumbnail">
+                                            <img src="" alt="no image">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="thumbnail">
+                                            <img src="" alt="no image">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="thumbnail">
+                                            <img src="" alt="no image">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="thumbnail">
+                                            <img src="" alt="no image">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="thumbnail">
+                                            <img src="" alt="no image">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="thumbnail">
+                                            <img src="" alt="no image">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="thumbnail">
+                                            <img src="" alt="no image">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="thumbnail">
+                                            <img src="" alt="no image">
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <!--end of image loop  -->
+                                <br>
+
+                                <hr>
+
+            					 <i class="fa fa-heart-o" aria-hidden="true"></i>12
+            					<hr>
                             </div>
                         </div>
 
