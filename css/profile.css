@@ -1,0 +1,14 @@
+.jumbo{
+  height: 450px;
+  background-color: blue;
+
+}
+.name{
+  top:120px;
+  height: 200px;
+  background-color: green;
+  text-align: center;
+}
+#nameTag{
+  top: 200px;
+}

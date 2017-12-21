@@ -39,8 +39,8 @@
     <body>
         <?php
             session_start();
-            //$userId =$_SESSION['userId'];
-            if(!$_SESSION['IsloggedIn'])
+            $userName =$_SESSION['userName'];
+            if($_SESSION['IsloggedIn'])
             {
             ?>
                 <div class="container-fluid">
@@ -55,39 +55,42 @@
                         <div class="col-md-1 offset-md-1">
 
                             <!-- sql insert to fetch profile pic -->
-                            <!-- <?php
-                            // include "sqlFunction.php";
-                            // $sql = "SELECT profilePicLink FROM userTable WHERE userId='$userId'";
-                            // $result = mysqli_query(getConnection(), $sql)or die(mysqli_error());
-                            // while($row = mysqli_fetch_assoc($result))
-                            //{
-
-                                //mysqli_close(getConnection());
-                            ?>
-                                <img src="<?php //echo $row['profilePicLink']; ?>" alt="some error">
                             <?php
-                            // }
-                            // else
-                            // {
-                            // ?>
-                            //     <img src="resource/profile.png" alt="someerror">
-                            // <?php
-                            // }
-                            ?> -->
-                            <img class="round" src="resource/profile.png" alt="someerror">
+                            include "sqlFunction.php";
+                            $sql = "SELECT profilePicLink FROM user WHERE userName='$userName'";
+                            $result = mysqli_query(getConnection(), $sql)or die(mysqli_error());
+                            while($row = mysqli_fetch_assoc($result))
+                            {
+
+                                mysqli_close(getConnection());
+                                if ($row['profilePicLink'] != NULL) {
+                                  # code...
+                            ?>
+                                <img class="round" src="<?php echo $row['profilePicLink']; ?>" alt="some error">
+                            <?php
+                            }
+                            else
+                            {
+                            ?>
+                                <img class="round" src="resource/profile.png" alt="someerror">
+                            <?php
+                            }
+                          }
+                            ?>
+
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-3 offset-md-1">
                             <br>
 
                             <font size="6">
 
-                                Hello, <?php echo "name" ?>
+                                Hello, <?php echo $userName; ?>
                             </font><br>
                             <font size ="3">
                                 Createing memories with us since 2017
                             </font>
                         </div>
-                        <div class="col-md-4 offset-md-3">
+                        <div class="col-md-4 offset-md-2">
                             <font size="6">
                                 temp:27<br>
                                 cludy
