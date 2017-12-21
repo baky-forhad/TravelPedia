@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+  <html>
+    <head>
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <!-- Compiled and minified CSS -->
+      <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection">
+
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+      <!-- Compiled and minified JavaScript -->
+
+    </head>
+
+    <body>
+      <div class="container">
+        <div class="chips chips-autocomplete" id="x"></div>
+        <button type="button" onclick="show()" name="button">butt</button>
+      </div>
+
+
+
+      <!--Import jQuery before materialize.js-->
+      <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+      <script src="js/materialize.min.js"></script>
+      <script type="text/javascript">
+        $(function () {
+          $('.chips-autocomplete').material_chip({
+            autocompleteOptions: {
+              data: {
+                'Apple': null,
+                'Microsoft': null,
+                'Google': null
+              },
+              limit: Infinity,
+              minLength: 1
+            }
+          });
+        });
+
+        function show() {
+          var dat = $('.chips-autocomplete').material_chip('data');
+
+          console.log(dat);
+        }
+      </script>
+
+    </body>
+  </html>

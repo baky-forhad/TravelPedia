@@ -75,12 +75,12 @@
                 <div class="row">
                     <div class="col-md-6 offset-md-3">
                         <div   class="login-form" style="top: 520px; ">
-                            <h2 align="center" style="margin:0px">
+                            <h1 align="center" style="margin:0px">
                                   create a memeory!!!
                             <small>
                               <h6  style="margin:0px" >I traveled there!!!</h6>
                             </small>
-                            </h2>
+                          </h1>
                             <hr>
                             <br>
                             <form class="" action="postvalidate.php" method="post">

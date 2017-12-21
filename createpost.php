@@ -3,7 +3,15 @@
     <head>
         <meta charset="utf-8">
         <title>Createpost</title>
-        <link rel="stylesheet" href="css/bootstrap-grid.css">
+        <!-- <link rel="stylesheet" href="css/bootstrap-grid.css"> -->
+
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <!-- Compiled and minified CSS -->
+        <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection">
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+
 
         <style media="screen">
             div.bg
@@ -84,7 +92,7 @@
                 </div>
                 <br><br><br><br>
                 <div class="row">
-                    <div class="col-md-6 offset-md-3">
+                    <div class="col m6 offset-m3">
                         <div   class="login-form" style="top: 520px; ">
                             <h2 align="center" style="margin:0px">
                                   create a memeory!!!
@@ -94,86 +102,63 @@
                             </h2>
                             <hr>
                             <br>
-                            <form class="" action="postvalidate.php" method="post">
+                            <form class="" action="weather.php?lat=38.3709&lng=-76.4436" method="post" enctype="multipart/form-data">
                                 <div class="row">
-                                    <div class="col-md-8 offset-md-2">
+                                    <div class="col m8 offset-m2">
                                         <input type="text"  name="postTitle" value="" placeholder="Post title">
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-8 offset-md-2">
+                                    <div class="col m8 offset-m2">
                                         <input type="text" name="travelmate" value="" placeholder="tag travelmates">
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-8 offset-md-2">
-                                        <input type="text"  name="postTags" value="" placeholder="Select Tags for the post">
+                                    <div class="col m8 offset-m2">
+                                        <div class="chips chips-autocomplete"></div>
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-8 offset-md-2">
-                                        <input type="text" name="locationID" value="" placeholder="select a location">
+                                    <div class="input-field col m8 offset-m2">
+                                        <input type="text" class="datepicker" id="datepicker1">
+                                        <label for="datepicker1">Date</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="input-field col m8 offset-m2">
+                                        <input type="text" id="location" name="locationID" value="" placeholder="select a location">
                                     </div>
                                 </div>
 
                                 <div class="row">
-                                    <div class="col-md-8 offset-md-2">
-                                        <textarea name="description" rows="8" cols="56" draggable="false">
-                                        </textarea>
+                                    <div class="input-field col m8 offset-m2">
+                                      <textarea id="textarea1" class="materialize-textarea"></textarea>
+                                      <label for="textarea1">Description</label>
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-8 offset-md-2">
-                                        <!-- <div class="colmd-4"> -->
-                                        DATE:
-                                            <select class="col-md-3 offset-md-1" name="Day">
+                                    <!-- <div class="input-field col m8 offset-m2 " id="wrapper">
+                                        <input type="file" id="upload_file" name="upload_file[]" onchange="preview_image();" multiple/>
+                                    </div> -->
+                                    <div class="col m8 offset-m2 file-field input-field" id="wrapper">
+                                      <div class="btn">
+                                        <span>File</span>
+                                        <input type="file" id="upload_file" name="upload_file[]" onchange="preview_image();" multiple>
+                                      </div>
+                                      <div class="file-path-wrapper">
+                                        <input class="file-path validate" type="text" placeholder="Upload one or more files">
+                                      </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col m8 offset-m2">
 
-                                                <option value="">DD</option>
-                                                <?php
-                                                for ($i=1; $i<32; $i++)
-                                                { ?>
-                                                    <option value="<?php echo $i ?>"><?php echo $i ?>
-                                                    </option>
-                                                <?php
-                                                }  ?>
-                                            </select>
-                                        <!-- </div>
-                                        <div class="col-md4"> -->
-                                            <select class="col-md-3" name="Month">
-                                                <option value="">MM</option>
-                                                <?php
-                                                for ($i=1; $i<13; $i++)
-                                                {
-                                                    ?>
-                                                    <option value="<?php echo $i ?>"><?php echo $i ?>
-                                                    </option>
-                                                <?php } ?>
-                                            </select>
+                                      <span id="image_preview"></span>
 
-                                        <!-- </div>
-                                        <div class="col-md4"> -->
-                                            <select class="col-md-3" name="Year">
-                                                <option value="">YYYY</option>
-                                                <?php
-                                                for ($i=1900; $i<2018; $i++)
-                                                {
-                                                    ?>
-                                                    <option value="<?php echo $i ?>"><?php echo $i ?>
-                                                    </option>
-                                                    <?php
-                                                }
-                                                ?>
-                                            </select>
-                                        <!-- </div> -->
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-8 offset-md-2">
-                                        <input type="file" name="images" value="">
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-8 offset-md-2" align="center">
+                                    <div class="col m8 offset-m2" align="center">
                                         <input id="btn-login" type="submit" name="" value="Create">
                                     </div>
                                 </div>
@@ -196,6 +181,115 @@
             header("Location:login.php");
         }
         ?>
-        
+
+        <script>
+            var loc = {};
+            var day;
+            var month;
+            var year;
+
+            function makeDate() {
+              day = document.getElementById('day').value;
+              //day = e.options[e.selectedIndex].value;
+              month = document.getElementById('month').value;
+              year = document.getElementById('year').value;
+              console.log(day+"baal");
+            }
+
+            function activatePlacesSearch()
+            {
+                var input = document.getElementById('location')
+                var autocomplete = new google.maps.places.Autocomplete(input);
+                google.maps.event.addListener(autocomplete, 'place_changed', function ()
+                {
+                  var place = autocomplete.getPlace();
+                  loc.lat = place.geometry.location.lat();
+                  loc.lng = place.geometry.location.lng();
+                  //console.log("shchs");
+
+
+                });
+
+                console.log(loc);
+
+
+            }
+
+            function showHint() {
+            	var  xmlhttp = new XMLHttpRequest();
+            	//document.getElementById("spinner").style.visibility= "visible";
+            	xmlhttp.onreadystatechange = function() {
+            		//alert(xmlhttp.rxmlhttpeadyState);
+            		if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                  alert(xmlhttp.responseText);
+            		}
+            	};
+             	var url="weather.php?lat="+loc.lat+"&lng="+loc.lng;
+            	//alert(url);
+            	xmlhttp.open("GET", url,true);
+            	xmlhttp.send();
+            }
+
+
+
+
+
+        </script>
+        <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+        <script src="js/materialize.min.js"></script>
+        <script type="text/javascript">
+          $(function () {
+            $('.chips-autocomplete').material_chip({
+              placeholder: 'Enter a tag',
+              autocompleteOptions: {
+                data: {
+                  'Apple': null,
+                  'Microsoft': null,
+                  'Google': null
+                },
+                limit: Infinity,
+                minLength: 1
+              }
+            });
+            $('.datepicker').pickadate({
+              selectMonths: true, // Creates a dropdown to control month
+              selectYears: 15, // Creates a dropdown of 15 years to control year,
+              today: 'Today',
+              clear: 'Clear',
+              close: 'Ok',
+              closeOnSelect: false // Close upon selecting a date,
+            });
+          });
+
+          function show() {
+            var dat = $('.chips-autocomplete').material_chip('data');
+
+            console.log(dat);
+          }
+
+          $(document).ready(function()
+          {
+           $('form').ajaxForm(function()
+             {
+              alert("Uploaded SuccessFully");
+             });
+            });
+
+          function preview_image()
+          {
+           var total_file=document.getElementById("upload_file").files.length;
+           for(var i=0;i<total_file;i++)
+           {
+            $('#image_preview').append("<img src='"+URL.createObjectURL(event.target.files[i])+"' width='100px'>&nbsp;&nbsp;");
+           }
+         }
+
+
+
+        </script>
+        <script
+          src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBcYc38cBGLlVJrFE-WTn_K3D2ACzAGvOc&libraries=places&callback=activatePlacesSearch"
+        ></script>
+
     </body>
 </html>
