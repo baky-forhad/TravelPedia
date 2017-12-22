@@ -1,6 +1,6 @@
 <?php
   session_start();
-  $_SESSION['file'] = "images/anu.jpeg"
+  //$_SESSION['file'] = "images/anu.jpeg"
 
   $errorMsg="";
   if ($_SESSION["IsloggedIn"]!=True) {
