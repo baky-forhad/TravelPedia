@@ -119,10 +119,6 @@
                                     </div>
                                 </div>
                                 <div class="row">
-<<<<<<< HEAD
-                                    <div class="col-md-8 offset-md-2">
-                                        <input type="text" name="locationID" id="location" value="" placeholder="select a location">
-=======
                                     <div class="input-field col m8 offset-m2">
                                         <input type="text" class="datepicker" id="datepicker1">
                                         <label for="datepicker1">Date</label>
@@ -131,7 +127,6 @@
                                 <div class="row">
                                     <div class="input-field col m8 offset-m2">
                                         <input type="text" id="location" name="locationID" value="" placeholder="select a location">
->>>>>>> 936692cf8a1a40d1e4511003d642154e675fefd0
                                     </div>
                                 </div>
 
@@ -187,8 +182,6 @@
         }
         ?>
 
-<<<<<<< HEAD
-=======
         <script>
             var loc = {};
             var day;
@@ -298,6 +291,5 @@
           src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBcYc38cBGLlVJrFE-WTn_K3D2ACzAGvOc&libraries=places&callback=activatePlacesSearch"
         ></script>
 
->>>>>>> 936692cf8a1a40d1e4511003d642154e675fefd0
     </body>
 </html>
