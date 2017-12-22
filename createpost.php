@@ -102,7 +102,7 @@
                             </h2>
                             <hr>
                             <br>
-                            <form class="" action="weather.php?lat=38.3709&lng=-76.4436" method="post" enctype="multipart/form-data">
+                            <form class="" action="weather.php" method="post" enctype="multipart/form-data">
                                 <div class="row">
                                     <div class="col m8 offset-m2">
                                         <input type="text"  name="postTitle" value="" placeholder="Post title">
@@ -110,18 +110,18 @@
                                 </div>
                                 <div class="row">
                                     <div class="col m8 offset-m2">
-                                        <input type="text" name="travelmate" value="" placeholder="tag travelmates">
+                                        <div class="chips chips-autocomplete" name="travelmates" id="chips-autocomplete1">
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col m8 offset-m2">
-                                        <div class="chips chips-autocomplete"></div>
+                                        <div class="chips chips-autocomplete" name="hashtags" id="chips-autocomplete2"></div>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="input-field col m8 offset-m2">
-                                        <input type="text" class="datepicker" id="datepicker1">
-                                        <label for="datepicker1">Date</label>
+                                        <span>Date</span>
+                                        <input type="date" id="datepicker1" name="date" value="<?php echo date('Y-m-d'); ?>">
                                     </div>
                                 </div>
                                 <div class="row">
@@ -132,7 +132,7 @@
 
                                 <div class="row">
                                     <div class="input-field col m8 offset-m2">
-                                      <textarea id="textarea1" class="materialize-textarea"></textarea>
+                                      <textarea id="textarea1" name="details" class="materialize-textarea"></textarea>
                                       <label for="textarea1">Description</label>
                                     </div>
                                 </div>
@@ -141,7 +141,7 @@
                                         <input type="file" id="upload_file" name="upload_file[]" onchange="preview_image();" multiple/>
                                     </div> -->
                                     <div class="col m8 offset-m2 file-field input-field" id="wrapper">
-                                      <div class="btn">
+                                      <div class="btn" onclick="clearPreview()">
                                         <span>File</span>
                                         <input type="file" id="upload_file" name="upload_file[]" onchange="preview_image();" multiple>
                                       </div>
@@ -159,7 +159,7 @@
                                 </div>
                                 <div class="row">
                                     <div class="col m8 offset-m2" align="center">
-                                        <input id="btn-login" type="submit" name="" value="Create">
+                                        <input id="btn-login" type="submit" name="submit" onclick="return showHint()" value="Create">
                                     </div>
                                 </div>
                                 <br>
@@ -187,6 +187,33 @@
             var day;
             var month;
             var year;
+            function makeString()
+            {
+              var dat = $('#chips-autocomplete1').material_chip('data');
+              var hash = $('#chips-autocomplete2').material_chip('data');
+              //document.getElementById('chips-autocomplete1').innerHTML=dat;
+
+              var travelmates = JSON.stringify(dat);
+
+              var hashtags = JSON.stringify(hash);
+
+              document.cookie = `tagmates = ${travelmates}`;
+              document.cookie = `hashtags = ${hashtags}`;
+              document.cookie = 'lat = '+loc.lat;
+              document.cookie = 'lng = '+loc.lng;
+
+              // tagObj = {
+              //   travelmates,
+              //   hashtags
+              // }
+              //
+              // return {};
+
+            }
+
+
+
+
 
             function makeDate() {
               day = document.getElementById('day').value;
@@ -216,12 +243,13 @@
             }
 
             function showHint() {
+              makeString();
             	var  xmlhttp = new XMLHttpRequest();
             	//document.getElementById("spinner").style.visibility= "visible";
             	xmlhttp.onreadystatechange = function() {
             		//alert(xmlhttp.rxmlhttpeadyState);
             		if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-                  alert(xmlhttp.responseText);
+                  //alert(xmlhttp.responseText);
             		}
             	};
              	var url="weather.php?lat="+loc.lat+"&lng="+loc.lng;
@@ -239,7 +267,20 @@
         <script src="js/materialize.min.js"></script>
         <script type="text/javascript">
           $(function () {
-            $('.chips-autocomplete').material_chip({
+            $('#chips-autocomplete1').material_chip({
+              placeholder: 'choose a travelmate',
+              autocompleteOptions: {
+                data: {
+                  'Apple': null,
+                  'Microsoft': null,
+                  'Google': null
+                },
+                limit: Infinity,
+                minLength: 1
+              }
+            });
+
+            $('#chips-autocomplete2').material_chip({
               placeholder: 'Enter a tag',
               autocompleteOptions: {
                 data: {
@@ -251,14 +292,15 @@
                 minLength: 1
               }
             });
-            $('.datepicker').pickadate({
-              selectMonths: true, // Creates a dropdown to control month
-              selectYears: 15, // Creates a dropdown of 15 years to control year,
-              today: 'Today',
-              clear: 'Clear',
-              close: 'Ok',
-              closeOnSelect: false // Close upon selecting a date,
-            });
+
+            // $('.datepicker').pickadate({
+            //   selectMonths: true, // Creates a dropdown to control month
+            //   selectYears: 15, // Creates a dropdown of 15 years to control year,
+            //   today: 'Today',
+            //   clear: 'Clear',
+            //   close: 'Ok',
+            //   closeOnSelect: false // Close upon selecting a date,
+            // });
           });
 
           function show() {
@@ -274,6 +316,10 @@
               alert("Uploaded SuccessFully");
              });
             });
+
+          function clearPreview() {
+            document.getElementById('image_preview').innerHTML = '';
+          }
 
           function preview_image()
           {
