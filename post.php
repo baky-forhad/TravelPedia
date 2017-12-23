@@ -38,9 +38,11 @@
     </head>
     <body>
         <?php
+
             session_start();
 
             include 'function.php';
+            $userId = $_SESSION['userId'];
 
             $userName =$_SESSION['userName'];
             if(isloggedin())
@@ -114,7 +116,7 @@
                     <?php
                         include 'db_rw.php';
 
-                        $sql= "SELECT * from POST WHERE `delete_status`=0";
+                        $sql= "SELECT * from POST WHERE userId='$userId'";
                         $posts=getDataFromDB($sql);
 
                     ?>
@@ -143,7 +145,7 @@
                                         }
                                     ?>
 
-            						by <a href="profile.php"> <?php echo $name; ?></a>
+            						by <a href="<?php echo "profile.php?id=".$id ?>" id="author"><?php echo $name; ?></a>
             					</p>
                                 <p>
 
@@ -171,7 +173,7 @@
                                             $name =$user['tname'];
                                             $uid =$user['tid'];
                                         ?>
-                                        <a href="<?php echo "taggedpost.php?tagid=".$uid ?>"><?php echo $name ?></a>
+                                        <a href="<?php echo "#" ?>"><?php echo $name ?></a>
                                         <?php }  ?>
 
 
@@ -187,8 +189,8 @@
             					</p>
                                 <p>
                                     <?php
-                                        $placeid =$key['locationId'];
-                                        $sql= "SELECT placeName from location where locationId='$placeid'";
+                                        $place =$key['locationId'];
+                                        $sql= "SELECT placeName from location where locationId='$place'";
                                         $placeArr=getDataFromDB($sql);
 
                                         foreach ($placeArr as $place) {
@@ -196,7 +198,7 @@
                                         }
                                     ?>
             						<i class="fa  fa-map-marker" aria-hidden="true" >
-                                        <a href="<?php echo "locationimage.php?locationID=".$placeid ?>"><?php echo $name; ?> </a>
+                                        <a href="#"><?php echo $name; ?> </a>
                                     </i>
 
             					</p>
@@ -241,11 +243,18 @@
                                    <?php echo $key['points'] ?>
                                   &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp;
                                   <button type="button" name="button">
-                                    <i class="fa fa-check" aria-hidden="true">
-                                        Went There!!
+                                    <i class="fa fa-pencil-square-o" aria-hidden="true">
+                                        edit post
                                     </i>
 
                                  </button>
+                                 &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp;
+                                 <button type="button" name="button">
+                                   <i class="fa fa-trash" aria-hidden="true">
+                                       delete post
+                                   </i>
+
+                                </button>
 
 
             					<hr>
