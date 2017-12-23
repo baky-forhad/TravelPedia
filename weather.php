@@ -71,7 +71,7 @@
       $userId = $_SESSION['userId'];
       $title = addslashes($_REQUEST['postTitle']);
       $details = addslashes($_REQUEST['details']);
-      $location = $_REQUEST['locationID'];
+      $location =addslashes( $_REQUEST['locationID']);
       //echo $location;
       $travelDate = $_REQUEST['date'];
       $locationId;
