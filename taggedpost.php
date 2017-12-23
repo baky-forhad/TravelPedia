@@ -114,8 +114,8 @@
 
                     <?php
                         include 'db_rw.php';
-
-                        $sql= "SELECT * from POST WHERE `delete_status`=0";
+                        $tagid=$_GET['tagid'];
+                        $sql= "SELECT * from post as p INNER JOIN `post_tag` as t on p.postId=t.postId where t.tagId='$tagid'";
                         $posts=getDataFromDB($sql);
 
                     ?>

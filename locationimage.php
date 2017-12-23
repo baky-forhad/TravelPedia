@@ -114,8 +114,8 @@
 
                     <?php
                         include 'db_rw.php';
-
-                        $sql= "SELECT * from POST WHERE `delete_status`=0";
+                        $locid =$_GET['locationID'];
+                        $sql="SELECT postId from post where locationId='$locid' and `delete_status`=0";
                         $posts=getDataFromDB($sql);
 
                     ?>
@@ -125,89 +125,30 @@
 
 
                         <div class="col-md-8">
+                            <h2>
+
+                                <?php
+
+                                    $sql= "SELECT placeName from location where locationId='$locid'";
+                                    $placeArr=getDataFromDB($sql);
+
+                                    foreach ($placeArr as $place) {
+                                        $name =$place['placeName'];
+                                    }
+                                ?>
+                                <i class="fa  fa-map-marker" aria-hidden="true" >
+                                    <a href="#"><?php echo $name; ?> </a>
+                                </i>
+                            </h2>
+
+
                             <?php foreach ($posts as $key ) { ?>
                             <div class="row">
 
 
                             <div class="col-md-10 offset-md-1" >
-                                <h2>
-                            	<a href="#" id="title"><?php echo $key['postTitle']; ?></a>
-            					</h2>
-            					<p class="lead">
-                                    <?php
-                                        $id =$key['userId'];
-                                        $sql= "SELECT userName from user where userId='$id'";
-                                        $userArr=getDataFromDB($sql);
 
-                                        foreach ($userArr as $user) {
-                                            $name =$user['userName'];
-                                        }
-                                    ?>
-
-            						by <a href="profile.php"> <?php echo $name; ?></a>
-            					</p>
-                                <p>
-
-                                    with <i class="fa fa-tag" aria-hidden="true"></i>
-                                    <?php
-                                        $id =$key['postId'];
-                                        $sql= "SELECT s.userName as uname, s.userId as uid from user as s INNER JOIN travel_mate as c on s.userId=c.userId where c.postId='$id'";
-                                        $userNameID=getDataFromDB($sql);
-                                        foreach ($userNameID as $user) {
-                                            $name =$user['uname'];
-                                            $uid =$user['uid'];
-                                        ?>
-                                    <a href="<?php echo "profile.php?id=".$uid ?>"> <?php echo $name; ?></a>
-                                <?php } ?>
-                                </p>
-
-                                <p>
-                                    <i class="fa fa-hashtag" aria-hidden="true"></i>
-                                    <?php
-                                        $id =$key['postId'];
-                                        $sql= "SELECT s.tag as tname, s.tagId as tid from tags as s INNER JOIN post_tag as c on s.tagId=c.tagId where  c.postId='$id'";
-                                        $userNameID=getDataFromDB($sql);
-                                        foreach ($userNameID as $user)
-                                        {
-                                            $name =$user['tname'];
-                                            $uid =$user['tid'];
-                                        ?>
-                                        <a href="<?php echo "taggedpost.php?tagid=".$uid ?>"><?php echo $name ?></a>
-                                        <?php }  ?>
-
-
-
-            					</p>
-
-
-
-
-            					<p>
-            						<i class="fa fa-clock-o" aria-hidden="true"></i>
-                                    <?php echo $key['createdDateTime']; ?>
-            					</p>
-                                <p>
-                                    <?php
-                                        $placeid =$key['locationId'];
-                                        $sql= "SELECT placeName from location where locationId='$placeid'";
-                                        $placeArr=getDataFromDB($sql);
-
-                                        foreach ($placeArr as $place) {
-                                            $name =$place['placeName'];
-                                        }
-                                    ?>
-            						<i class="fa  fa-map-marker" aria-hidden="true" >
-                                        <a href="<?php echo "locationimage.php?locationID=".$placeid ?>"><?php echo $name; ?> </a>
-                                    </i>
-
-            					</p>
-            					<hr>
-            					<p>
-                                    <?php echo $key['postDetails'] ?>
-                                </p>
                                 <!-- //image loop -->
-
-
 
                                 <div class="row">
                                     <?php
@@ -235,18 +176,6 @@
                                 <br>
 
                                 <hr>
-
-            					 <button type="button" name="button">
-                                    <i class="fa fa-heart-o" aria-hidden="true"></i>
-                                </button>
-                                   <?php echo $key['points'] ?>
-                                  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp;
-                                  <button type="button" name="button">
-                                    <i class="fa fa-check" aria-hidden="true">
-                                        Went There!!
-                                    </i>
-
-                                 </button>
 
 
             					<hr>

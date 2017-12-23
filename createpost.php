@@ -130,7 +130,7 @@
                                         <input type="text" id="location" name="locationID" value="" placeholder="select a location">
                                     </div>
                                 </div>
-                                <input id="placeselected" type="text" value="false">
+                                <input id="placeselected" type="text" value="false" hidden>
 
                                 <div class="row">
                                     <div class="input-field col m8 offset-m2">
@@ -246,7 +246,7 @@
 
                 });
 
-                console.log(loc);
+
 
 
             }
