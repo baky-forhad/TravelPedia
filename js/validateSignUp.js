@@ -2,31 +2,23 @@ var status = false;
 
 function validSignUp()
 {
-    // if (validMail()) {
-    //   if (validUserName()) {
-    //     if (ValidPassword()) {
-    //       if (confirmPassword()) {
-    //         return true;
-    //       }
-    //       else {
-    //         return false;
-    //       }
-    //     }
-    //     else {
-    //       return false;
-    //     }
-    //   }
-    //   else {
-    //     return false;
-    //   }
-    // }
-    // else {
-    //   return false;
-    // }
+    if (validMail()) {
+      if (validUserName()) {
+        if (ValidPassword()) {
+          if (confirmPassword()) {
+            return true;
+          }
+
+        }
+
+      }
+
+    }
+
 
     //alert("hoy nai");
 
-    return status;
+    return false;
     //alert("dhupp baal");
 
 
@@ -36,20 +28,37 @@ function validMail()
 {
     var mail = document.getElementById('email');
     var reg=/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-    mail.value.match(reg) ? correct(mail):incorrect(mail);
+    if (mail.value.match(reg)) {
+      correct(mail);
+      return true;
+    }
+    incorrect(mail);
+    return false;
 
 }
 function validUserName()
 {
     var uname = document.getElementById('Uname');
-    uname.value.length<6?incorrect(uname):correct(uname);
+
+    if (uname.value.length<6) {
+      incorrect(uname);
+      return false;
+    }
+    correct(uname);
+    return true;
 
 }
 function ValidPassword()
 {
     var pass = document.getElementById('password');
     var reg = /(?=.*?[a-z])(?=.*?[A-Z])(?=.*?[0-9]).{8,}/;
-    pass.value.match(reg)?correct(pass):incorrect(pass);
+
+    if (pass.value.match(reg)) {
+      correct(pass);
+      return true;
+    }
+    incorrect(pass);
+    return false;
 
 }
 
@@ -77,7 +86,14 @@ function confirmPassword()
     // }
     //pass.value == cpass.value ? correct(cpass):incorrect(cpass);
     var reg = /(?=.*?[a-z])(?=.*?[A-Z])(?=.*?[0-9]).{8,}/;
-    cpass.value == pass.value && cpass.value.length>7 ?correct(cpass):incorrect(cpass);
+
+
+    if (cpass.value == pass.value && cpass.value.length>7 ) {
+      correct(cpass);
+      return true;
+    }
+    incorrect(cpass);
+    return false;
 
 }
 

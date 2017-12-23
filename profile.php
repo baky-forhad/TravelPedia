@@ -143,7 +143,7 @@
                                           <td>:</td>
                                           <td><?php echo $firstName; ?></td>
                                           <td width="30%" rowspan="7" align="center">
-                                              <img width="128" src="images/ragnar.jpeg"/>
+                                              <img width="128" src="<?php echo $pic ?>"/>
                                           </td>
                                       </tr>
                                       <tr>

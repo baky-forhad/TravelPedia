@@ -38,7 +38,6 @@
     </head>
     <body>
         <?php
-
             session_start();
 
             include 'function.php';

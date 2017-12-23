@@ -51,10 +51,12 @@
             if($isValid)
             {
                 echo $query;
-                  if(isSignupSuccesful($query)){
+                $userId = isSignupSuccesful($query);
+                  if($userId){
                     session_start();
                     $_SESSION['IsloggedIn']=True;
                     $_SESSION['userName']=$username;
+                    $_SESSION['userId'] = $userId;
                     header("Location:registration_complete.php");
 
                 	}

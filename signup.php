@@ -80,7 +80,9 @@
                 </h2>
                 <hr>
                 <br>
+
                 <form class="" action="signupValidate.php" method="post" onsubmit="return validSignUp()">
+
                     <table align="center" >
 
                         <tr>
