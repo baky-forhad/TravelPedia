@@ -38,9 +38,11 @@
     </head>
     <body>
         <?php
+
+            include 'function.php';
             session_start();
             $userName =$_SESSION['userName'];
-            if($_SESSION['IsloggedIn'])
+            if(!isloggedin())
             {
             ?>
                 <div class="container-fluid">
@@ -106,106 +108,124 @@
                     </div>
                 </div>
 
-                <div class="container-fluid">
 
 
-                    <!-- //postloop -->
-                    <div class="row">
+                    <?php
+                        include 'db_rw.php';
+
+                        $sql= "SELECT * from POST";
+                        $posts=getDataFromDB($sql);
+
+                    ?>
+                    <div class="container-fluid">
+                        <div class="row">
+
+
+
                         <div class="col-md-8">
+                            <?php foreach ($posts as $key ) { ?>
+                            <div class="row">
+
+
                             <div class="col-md-10 offset-md-1" >
                                 <h2>
-                            	<a href="#" id="title">POST TITLE</a>
+                            	<a href="#" id="title"><?php echo $key['postTitle']; ?></a>
             					</h2>
             					<p class="lead">
-            						by <a href="#" id="author">TRAVELER 112</a>
-            					</p>
-                                <p>
-                                    with <i class="fa fa-tag" aria-hidden="true"></i>
-                                    <?php if (condition) ?>
+                                    <?php
+                                        $id =$key['userId'];
+                                        $sql= "SELECT userName from user where userId='$id'";
+                                        $userArr=getDataFromDB($sql);
 
-                                    <?php ?>
-                                    <a href="#" id="">dipto</a>
-                                </p>
-            					<p>
-            						<i class="fa fa-clock-o" aria-hidden="true"></i>Posted on August 28, 2013 at 10:00 PM
+                                        foreach ($userArr as $user) {
+                                            $name =$user['userName'];
+                                        }
+                                    ?>
+
+            						by <a href="<?php echo "profile.php?id=".$id ?>" id="author"><?php echo $name; ?></a>
             					</p>
                                 <p>
-            						<i class="fa  fa-map-marker" aria-hidden="true"></i>shajek valley
+
+                                    with <i class="fa fa-tag" aria-hidden="true"></i>
+                                    <?php
+                                        $id =$key['postId'];
+                                        $sql= "SELECT s.userName as uname, s.userId as uid from user as s INNER JOIN travel_mate as c on s.userId=c.userId where c.postId='$id'";
+                                        $userNameID=getDataFromDB($sql);
+                                        foreach ($userNameID as $user) {
+                                            $name =$user['uname'];
+                                            $uid =$user['uid'];
+                                        ?>
+                                    <a href="<?php echo "profile.php?id=".$uid ?>"> <?php echo $name; ?></a>
+                                <?php } ?>
+                                </p>
+
+                                <p>
+                                    <i class="fa fa-hashtag" aria-hidden="true"></i>
+                                    <?php
+                                        $id =$key['postId'];
+                                        $sql= "SELECT s.tag as tname, s.tagId as tid from tags as s INNER JOIN post_tag as c on s.tagId=c.tagId where  c.postId='$id'";
+                                        $userNameID=getDataFromDB($sql);
+                                        foreach ($userNameID as $user)
+                                        {
+                                            $name =$user['tname'];
+                                            $uid =$user['tid'];
+                                        ?>
+                                        <a href="<?php echo "#" ?>"><?php echo $name ?></a>
+                                        <?php }  ?>
+
+
+
+            					</p>
+
+
+
+
+            					<p>
+            						<i class="fa fa-clock-o" aria-hidden="true"></i>
+                                    <?php echo $key['createdDateTime']; ?>
+            					</p>
+                                <p>
+                                    <?php
+                                        $place =$key['locationId'];
+                                        $sql= "SELECT placeName from location where locationId='$place'";
+                                        $placeArr=getDataFromDB($sql);
+
+                                        foreach ($placeArr as $place) {
+                                            $name =$place['placeName'];
+                                        }
+                                    ?>
+            						<i class="fa  fa-map-marker" aria-hidden="true" >
+                                        <a href="#"><?php echo $name; ?> </a>
+                                    </i>
+
             					</p>
             					<hr>
-            					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore, veritatis, tempora, necessitatibus inventore nisi quam quia repellat ut tempore laborum possimus eum dicta id animi corrupti debitis ipsum officiis rerum.</p>
+            					<p>
+                                    <?php echo $key['postDetails'] ?>
+                                </p>
                                 <!-- //image loop -->
+
+
+
                                 <div class="row">
+                                    <?php
+                                        $postid =$key['postId'];
+                                        $sql= "SELECT fileLink from post_image where postId='$postid'";
+                                        $linkArr=getDataFromDB($sql);
+
+                                        foreach ($linkArr as $place)
+                                        {
+
+                                            $link =$place['fileLink'];
+                                            //echo $link;
+                                    ?>
                                     <div class="col-md-4">
                                         <div class="thumbnail">
-                                            <img src="" alt="no image">
+                                            <img src="<?php echo $link;?>" alt="no image">
                                         </div>
                                     </div>
-                                    <div class="col-md-4">
-                                        <div class="thumbnail">
-                                            <img src="" alt="no image">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="thumbnail">
-                                            <img src="" alt="no image">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="thumbnail">
-                                            <img src="" alt="no image">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="thumbnail">
-                                            <img src="" alt="no image">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="thumbnail">
-                                            <img src="" alt="no image">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="thumbnail">
-                                            <img src="" alt="no image">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="thumbnail">
-                                            <img src="" alt="no image">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="thumbnail">
-                                            <img src="" alt="no image">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="thumbnail">
-                                            <img src="" alt="no image">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="thumbnail">
-                                            <img src="" alt="no image">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="thumbnail">
-                                            <img src="" alt="no image">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="thumbnail">
-                                            <img src="" alt="no image">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="thumbnail">
-                                            <img src="" alt="no image">
-                                        </div>
-                                    </div>
+                                  <?php } ?>
+
 
                                 </div>
 
@@ -214,9 +234,23 @@
 
                                 <hr>
 
-            					 <i class="fa fa-heart-o" aria-hidden="true"></i>12
+            					 <button type="button" name="button">
+                                    <i class="fa fa-heart-o" aria-hidden="true"></i>
+                                </button>
+                                   <?php echo $key['points'] ?>
+                                  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp;
+                                  <button type="button" name="button">
+                                    <i class="fa fa-check" aria-hidden="true">
+                                        Went There!!
+                                    </i>
+
+                                 </button>
+
+
             					<hr>
                             </div>
+                        </div>
+                        <?php } ?>
                         </div>
 
                         <div class="col-md-4" style="background-color:black;">
@@ -226,6 +260,9 @@
                             </div>
 
                         </div>
+
+
+
 
                     </div>
                 </div>

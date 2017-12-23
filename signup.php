@@ -81,7 +81,7 @@
                 <hr>
                 <br>
                 <form class="" action="signupValidate.php" method="post"
-                onSubmit="validSignUp()">
+                onSubmit="return valid()">
                     <table align="center" >
 
                         <tr>

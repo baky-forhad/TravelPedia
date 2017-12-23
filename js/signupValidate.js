@@ -1,5 +1,6 @@
-function validSignUp()
+function valid()
 {
+    alert("not working");
     return false;
 
 }
@@ -29,30 +30,10 @@ function confirmPassword()
 {
     var pass = document.getElementById('password');
     var cpass = document.getElementById('cPassword');
-    // var reg = /(?=.*?[a-z])(?=.*?[A-Z])(?=.*?[0-9]).{8,}/;
-    // if(cpass.value.match(reg))
-    // {
-    //     console.log("ami ekhane");
-    //     if (pass.value == cpass.value)
-    //     {
-    //         correct(cpass);
-    //     }
-    //     else
-    //     {
-    //         incorrect(cpass);
-    //
-    //     }
-    //
-    // }
-    // else{
-    //     incorrect(cpass);
-    // }
-    //pass.value == cpass.value ? correct(cpass):incorrect(cpass);
     var reg = /(?=.*?[a-z])(?=.*?[A-Z])(?=.*?[0-9]).{8,}/;
     cpass.value == pass.value ?correct(cpass):incorrect(cpass);
 
 }
-
 
 
 function incorrect(x)

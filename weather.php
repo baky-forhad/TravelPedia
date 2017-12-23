@@ -44,7 +44,7 @@
          $uploadfile=$_FILES["upload_file"]["tmp_name"][$i];
          //$folder="images/";
          move_uploaded_file($_FILES["upload_file"]["tmp_name"][$i], "images/".date('YmdHis').$i.".jpeg");
-         $imageName[$i] = "images/".date('YmdHis')."image.jpeg";
+         $imageName[$i] = "images/".date('YmdHis').$i.jpeg";
 
         }
       }
