@@ -159,7 +159,7 @@
                                 </div>
                                 <div class="row">
                                     <div class="col m8 offset-m2" align="center">
-                                        <input id="btn-login" type="submit" name="submit" onclick="return showHint()" value="Create">
+                                        <input id="btn-login" type="submit" name="submit"  onclick="makeString()" value="Create">
                                     </div>
                                 </div>
                                 <br>
@@ -182,6 +182,10 @@
         }
         ?>
 
+
+        <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+        <!-- <script src="http://malsup.github.com/jquery.form.js"></script> -->
+        <script src="js/materialize.min.js"></script>
         <script>
             var loc = {};
             var day;
@@ -193,14 +197,16 @@
               var hash = $('#chips-autocomplete2').material_chip('data');
               //document.getElementById('chips-autocomplete1').innerHTML=dat;
 
+              console.log(document.getElementById('chips-autocomplete1').value);
+
               var travelmates = JSON.stringify(dat);
 
               var hashtags = JSON.stringify(hash);
 
               document.cookie = `tagmates = ${travelmates}`;
               document.cookie = `hashtags = ${hashtags}`;
-              document.cookie = 'lat = '+loc.lat;
-              document.cookie = 'lng = '+loc.lng;
+              document.cookie = `lat = ${loc.lat}`;
+              document.cookie = `lng = ${loc.lng}`;
 
               // tagObj = {
               //   travelmates,
@@ -243,16 +249,20 @@
             }
 
             function showHint() {
-              makeString();
-            	var  xmlhttp = new XMLHttpRequest();
+              //makeString();
+              //console.log($('#chips-autocomplete2').material_chip('data'));
+              var  xmlhttp = new XMLHttpRequest();
+            	var str=document.getElementById('chips-autocomplete1').value;
             	//document.getElementById("spinner").style.visibility= "visible";
             	xmlhttp.onreadystatechange = function() {
             		//alert(xmlhttp.rxmlhttpeadyState);
             		if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-                  //alert(xmlhttp.responseText);
+            			//document.getElementById("spinner").style.visibility= "hidden";
+            			var m=document.getElementById("txtHint");
+            			m.innerHTML=xmlhttp.responseText;;
             		}
             	};
-             	var url="weather.php?lat="+loc.lat+"&lng="+loc.lng;
+             	var url="server.php?uname="+str;
             	//alert(url);
             	xmlhttp.open("GET", url,true);
             	xmlhttp.send();
@@ -263,44 +273,83 @@
 
 
         </script>
-        <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-        <script src="js/materialize.min.js"></script>
         <script type="text/javascript">
           $(function () {
-            $('#chips-autocomplete1').material_chip({
-              placeholder: 'choose a travelmate',
-              autocompleteOptions: {
-                data: {
-                  'Apple': null,
-                  'Microsoft': null,
-                  'Google': null
-                },
-                limit: Infinity,
-                minLength: 1
-              }
-            });
+            var my_data;
+            var myConvertedData = {};
+            var  xmlhttp = new XMLHttpRequest();
+            //var str=document.getElementById('chips-autocomplete1').value;
+            //document.getElementById("spinner").style.visibility= "visible";
+            xmlhttp.onreadystatechange = function() {
+              //alert(xmlhttp.rxmlhttpeadyState);
+              if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                //document.getElementById("spinner").style.visibility= "hidden";
+                //var m=document.getElementById("txtHint");
+                my_data = xmlhttp.responseText;
+                my_data = JSON.parse(my_data);
+                //console.log(my_data);
 
-            $('#chips-autocomplete2').material_chip({
-              placeholder: 'Enter a tag',
-              autocompleteOptions: {
-                data: {
-                  'Apple': null,
-                  'Microsoft': null,
-                  'Google': null
-                },
-                limit: Infinity,
-                minLength: 1
-              }
-            });
+                $.each(my_data, function(index, value) {
+                  myConvertedData[value.userName] = value.profilePicLink;
+                });
 
-            // $('.datepicker').pickadate({
-            //   selectMonths: true, // Creates a dropdown to control month
-            //   selectYears: 15, // Creates a dropdown of 15 years to control year,
-            //   today: 'Today',
-            //   clear: 'Clear',
-            //   close: 'Ok',
-            //   closeOnSelect: false // Close upon selecting a date,
-            // });
+                $('#chips-autocomplete1').material_chip({
+                  placeholder: 'Enter a tag',
+                  autocompleteOptions: {
+                    data: myConvertedData,
+                    limit: Infinity,
+                    minLength: 1
+                  }
+                });
+
+
+
+                //console.log(myConvertedData.ragnar);
+              }
+            };
+            var url="tags.php";
+            //alert(url);
+            xmlhttp.open("GET", url,true);
+            xmlhttp.send();
+          });
+
+          $(function () {
+            var my_data;
+            var myConvertedData = {};
+            var  xmlhttp = new XMLHttpRequest();
+            //var str=document.getElementById('chips-autocomplete1').value;
+            //document.getElementById("spinner").style.visibility= "visible";
+            xmlhttp.onreadystatechange = function() {
+              //alert(xmlhttp.rxmlhttpeadyState);
+              if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                //document.getElementById("spinner").style.visibility= "hidden";
+                //var m=document.getElementById("txtHint");
+                my_data = xmlhttp.responseText;
+                my_data = JSON.parse(my_data);
+                //console.log(my_data);
+
+                $.each(my_data, function(index, value) {
+                  myConvertedData[value.tag] = null;
+                });
+
+                $('#chips-autocomplete2').material_chip({
+                  placeholder: 'Enter a tag',
+                  autocompleteOptions: {
+                    data: myConvertedData,
+                    limit: Infinity,
+                    minLength: 1
+                  }
+                });
+
+
+
+                //console.log(myConvertedData.ragnar);
+              }
+            };
+            var url="hash_tag.php";
+            //alert(url);
+            xmlhttp.open("GET", url,true);
+            xmlhttp.send();
           });
 
           function show() {
