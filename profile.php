@@ -71,10 +71,36 @@
     <body style="background-color: rgb(227, 231, 232)">
         <?php
         include 'function.php';
+        include 'dbconnect.php';
+
         //include 'navbar.php';
 
         if(IsloggedIn())
         {
+            $id;
+            if(isset($_GET['id']))
+            {
+                $id =$_GET['id'];
+            }
+            else {
+                $id=$_SESSION ['userId'] ;
+            }
+
+            $sql = "SELECT * from user WHERE  userId='$id'";
+            $result = mysqli_query(getConnection(), $sql)or die(mysqli_error());
+            while($row = mysqli_fetch_assoc($result))
+            {
+                $userName = $row['userName'];
+                $firstName=$row['firstName'];
+                $lastName=$row['lastName'];
+                $email =$row['email'];
+                $pic=$row['profilePicLink'];
+                $phone =$row['phone'];
+                $dob=$row['dob'];
+                $gender =$row['gender'];
+
+            }
+
         ?>
 
             <div class="container-fluid bg" >
@@ -96,7 +122,7 @@
                             <br>
                             <form class="" action="postvalidate.php" method="post">
                               <fieldset>
-                                  <legend><b>USER | DETAIL</b></legend>
+                                  <legend><b>USER | DETAILs</b></legend>
                                   <br/>
                                   <table cellpadding="0" cellspacing="0">
                                       <tr>
@@ -108,46 +134,60 @@
                                       <tr>
                                           <td>User Name</td>
                                           <td>:</td>
-                                          <td>bob</td>
+                                          <td><?php echo $userName ?></td>
                                       </tr>
                                       <tr><td colspan="3"><hr /></td></tr>
                                       <tr>
-                                          <td>Name</td>
+                                          <td>Frist Name</td>
                                           <td>:</td>
-                                          <td>Bob Marsh</td>
+                                          <td><?php echo $firstName; ?></td>
                                           <td width="30%" rowspan="7" align="center">
                                               <img width="128" src="images/ragnar.jpeg"/>
                                           </td>
+                                      </tr>
+                                      <tr>
+                                          <td>Last Name</td>
+                                          <td>:</td>
+                                          <td><?php echo $lastName; ?></td>
                                       </tr>
                                       <tr><td colspan="3"><hr /></td></tr>
                                       <tr>
                                           <td>Email</td>
                                           <td>:</td>
-                                          <td>bob@aiub.edu</td>
+                                          <td><?php echo $email; ?></td>
                                       </tr>
-                                      <tr><td colspan="3"><hr/></td></tr>
+                                      <tr><td colspan="3"><hr /></td></tr>
                                       <tr>
-                                          <td>Gender</td>
+                                          <td>DOB</td>
                                           <td>:</td>
-                                          <td>Male</td>
-                                      </tr>
-                                      <tr><td colspan="3"><hr/></td></tr>
-                                      <tr>
-                                          <td>Date of Birth</td>
-                                          <td>:</td>
-                                          <td>19/09/1998</td>
+                                          <td><?php echo $dob; ?></td>
                                       </tr>
                                       <tr><td colspan="3"><hr /></td></tr>
                                       <tr>
                                           <td>Phone</td>
                                           <td>:</td>
-                                          <td>01645789654</td>
+                                          <td><?php echo $phone; ?></td>
                                       </tr>
+                                      <tr><td colspan="3"><hr /></td></tr>
+                                      <tr>
+                                          <td>Gender</td>
+                                          <td>:</td>
+                                          <td><?php echo $gender; ?></td>
+                                      </tr>
+
 
                                   </table>
                                   <hr/>
                                   <div align="center" >
+                                    <?php
+                                    if(isset($_GET['id']))
+                                    {
+
+                                    }
+                                    else{
+                                    ?>
                                     <a href="edit.php">Edit</a>
+                                <?php } ?>
                                   </div>
 
 

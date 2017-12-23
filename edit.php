@@ -60,10 +60,27 @@
     <body style="background-color: rgb(227, 231, 232)">
         <?php
         include 'function.php';
+        include 'dbconnect.php';
+
         //include 'navbar.php';
 
         if(IsloggedIn())
         {
+            $id=$_SESSION ['userId'] ;
+            $sql = "SELECT * from user WHERE  userId='$id'";
+            $result = mysqli_query(getConnection(), $sql)or die(mysqli_error());
+            while($row = mysqli_fetch_assoc($result))
+            {
+                $userName = $row['userName'];
+                $firstName=$row['firstName'];
+                $lastName=$row['lastName'];
+                $email =$row['email'];
+                $pic=$row['profilePicLink'];
+                $phone =$row['phone'];
+                $dob=$row['dob'];
+                $gender =$row['gender'];
+
+            }
         ?>
 
             <div class="container-fluid bg" >
@@ -83,8 +100,7 @@
                           </h1>
                             <hr>
                             <br>
-                            <form class="" action="postvalidate.php" method="post">
-                              <fieldset>This is message box</fieldset>
+                            <form class="" action="updateValidate.php" method="post">
                               <br />
                               <fieldset>
                                   <legend><b>USER | EDIT</b></legend>
@@ -100,14 +116,21 @@
                                           <tr>
                                               <td>User Name</td>
                                               <td>:</td>
-                                              <td>bob</td>
+                                              <td><?php echo $userName; ?></td>
                                               <td></td>
                                           </tr>
                                           <tr><td colspan="4"><hr /></td></tr>
                                           <tr>
-                                              <td>Name</td>
+                                              <td>first Name</td>
                                               <td>:</td>
-                                              <td><input name="name" type="text" value="Bob Marsh"></td>
+                                              <td><input name="firstname" type="text" value="<?php echo $firstName?>"></td>
+                                              <td></td>
+                                          </tr>
+                                          <tr><td colspan="4"><hr /></td></tr>
+                                          <tr>
+                                              <td>Last Name</td>
+                                              <td>:</td>
+                                              <td><input name="lastname" type="text" value="<?php echo $lastName?>"></td>
                                               <td></td>
                                           </tr>
                                           <tr><td colspan="4"><hr /></td></tr>
@@ -115,61 +138,8 @@
                                               <td>Email</td>
                                               <td>:</td>
                                               <td>
-                                                  <input name="email" type="text" value="bob@aiub.edu">
+                                                  <input name="email" type="text" value="<?php echo $email?>">
                                                   <abbr title="hint: sample@example.com"><b>i</b></abbr>
-                                              </td>
-                                              <td></td>
-                                          </tr>
-                                          <tr><td colspan="4"><hr /></td></tr>
-                                          <tr>
-                                              <td>Gender</td>
-                                              <td>:</td>
-                                              <td>
-                                                  <input name="gender" type="radio" checked="checked">Male
-                                                  <input name="gender" type="radio">Female
-                                                  <input name="gender" type="radio">Other
-                                              </td>
-                                              <td></td>
-                                          </tr>
-                                          <tr><td colspan="4"><hr /></td></tr>
-                                          <tr>
-                                              <td valign="top">Date of Birth</td>
-                                              <td valign="top">:</td>
-                                              <td>
-                                                <select class="" name="Day">
-                                                    <option value="">DD</option>
-                                                    <?php
-                                                    for ($i=1; $i<32; $i++)
-                                                    {
-                                                        ?>
-                                                        <option value="<?php echo $i ?>"><?php echo $i ?>
-                                                        </option>
-                                                    <?php
-                                                    }
-                                                    ?>
-                                                </select>
-                                                <select class="" name="Month">
-                                                    <option value="">MM</option>
-                                                    <?php
-                                                    for ($i=1; $i<13; $i++)
-                                                    {
-                                                        ?>
-                                                        <option value="<?php echo $i ?>"><?php echo $i ?>
-                                                        </option>
-                                                    <?php } ?>
-                                                </select>
-                                                <select class="" name="Year">
-                                                    <option value="">YYYY</option>
-                                                    <?php
-                                                    for ($i=1900; $i<2018; $i++)
-                                                    {
-                                                        ?>
-                                                        <option value="<?php echo $i ?>"><?php echo $i ?>
-                                                        </option>
-                                                        <?php
-                                                    }
-                                                    ?>
-                                                </select>
                                               </td>
                                               <td></td>
                                           </tr>
@@ -180,19 +150,10 @@
                                               <td>
                                                   <table>
                                                       <tr>
-                                                          <td><img width="48" src="images/ragnar.jpeg" /></td>
+                                                          <td><img width="48" src="<?php echo $pic?>" /></td>
                                                           <td><input type="file"></td>
                                                       </tr>
                                                   </table>
-                                              </td>
-                                              <td></td>
-                                          </tr>
-                                          <tr><td colspan="4"><hr /></td></tr>
-                                          <tr>
-                                              <td>Phone</td>
-                                              <td>:</td>
-                                              <td>
-                                                  <input type="text" name="phone" value="">
                                               </td>
                                               <td></td>
                                           </tr>
