@@ -1,10 +1,3 @@
-<<<<<<< HEAD
-function valid()
-{
-    alert("not working");
-    return false;
-=======
->>>>>>> cd2741456b2185d47d329aaa41170dcb398475f1
 
 // function validSignUp()
 // {
@@ -41,41 +34,6 @@ function valid()
 //   return false;
 // };
 
-<<<<<<< HEAD
-}
-function validUserName()
-{
-    var uname = document.getElementById('Uname');
-    uname.value.length<6?incorrect(uname):correct(uname);
-
-}
-function ValidPassword()
-{
-    var pass = document.getElementById('password');
-    var reg = /(?=.*?[a-z])(?=.*?[A-Z])(?=.*?[0-9]).{8,}/;
-    pass.value.match(reg)?correct(pass):incorrect(pass);
-
-}
-
-function confirmPassword()
-{
-    var pass = document.getElementById('password');
-    var cpass = document.getElementById('cPassword');
-    var reg = /(?=.*?[a-z])(?=.*?[A-Z])(?=.*?[0-9]).{8,}/;
-    cpass.value == pass.value ?correct(cpass):incorrect(cpass);
-
-}
-
-
-function incorrect(x)
-{
-    x.style.border="solid 3px red";
-}
-function correct(x)
-{
-    x.style.border="solid 3px green";
-}
-=======
 // function validMail()
 // {
 //     var mail = document.getElementById('email');
@@ -139,4 +97,3 @@ function correct(x)
 //     return true;
 //     //status = true;
 // }
->>>>>>> cd2741456b2185d47d329aaa41170dcb398475f1

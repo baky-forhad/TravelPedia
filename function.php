@@ -2,11 +2,7 @@
 
     function isloggedIn()
     {
-<<<<<<< HEAD
-        
-=======
         //session_start();
->>>>>>> cd2741456b2185d47d329aaa41170dcb398475f1
         return ($_SESSION["IsloggedIn"] && isset($_SESSION["IsloggedIn"]) )==True ? True : False;
     }
 

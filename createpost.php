@@ -103,10 +103,10 @@
                             </h2>
                             <hr>
                             <br>
-                            <form class="" action="weather.php" method="post" enctype="multipart/form-data">
+                            <form class="" action="weather.php" method="post" enctype="multipart/form-data" onSubmit="return validPost()">
                                 <div class="row">
                                     <div class="col m8 offset-m2">
-                                        <input type="text"  name="postTitle" value="" placeholder="Post title">
+                                        <input type="text"  id="title" name="postTitle" value="" placeholder="Post title">
                                     </div>
                                 </div>
                                 <div class="row">
@@ -130,11 +130,12 @@
                                         <input type="text" id="location" name="locationID" value="" placeholder="select a location">
                                     </div>
                                 </div>
+                                <input id="placeselected" type="text" value="false">
 
                                 <div class="row">
                                     <div class="input-field col m8 offset-m2">
-                                      <textarea id="textarea1" name="details" class="materialize-textarea"></textarea>
-                                      <label for="textarea1">Description</label>
+                                      <textarea id="details"  name="details" class="materialize-textarea"></textarea>
+                                      <label for="details">Description</label>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -169,6 +170,7 @@
                         </div>
                         <br><br><br><br>
                     </div>
+
 
                 </div>
 
@@ -239,7 +241,7 @@
                   var place = autocomplete.getPlace();
                   loc.lat = place.geometry.location.lat();
                   loc.lng = place.geometry.location.lng();
-                  //console.log("shchs");
+                  document.getElementById('placeselected').value = "true";
 
 
                 });
@@ -386,6 +388,8 @@
         <script
           src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBcYc38cBGLlVJrFE-WTn_K3D2ACzAGvOc&libraries=places&callback=activatePlacesSearch"
         ></script>
+
+        <script src="js/postValidate.js"></script>
 
     </body>
 </html>

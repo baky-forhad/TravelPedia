@@ -1,5 +1,5 @@
 <?php
-
+    session_start();
     include 'function.php';
     include 'db_rw.php';
 
@@ -33,7 +33,8 @@
 
       //echo $weatherArray['currently']['summary'];
 
-      //print_r($_FILES);
+      print_r($_FILES);
+      echo sizeof($_FILES['upload_file']['name']);
 
       $imageName;
 
@@ -44,7 +45,7 @@
          $uploadfile=$_FILES["upload_file"]["tmp_name"][$i];
          //$folder="images/";
          move_uploaded_file($_FILES["upload_file"]["tmp_name"][$i], "images/".date('YmdHis').$i.".jpeg");
-         $imageName[$i] = "images/".date('YmdHis').$i.jpeg";
+         $imageName[$i] = "images/".date('YmdHis').$i.".jpeg";
 
         }
       }
@@ -111,51 +112,57 @@
 
       }
 
-      for ($i=0; $i <sizeof($imageName) ; $i++) {
-        $sql = "INSERT INTO `post_image`(`imageId`, `fileLink`, `postId`) VALUES (null,'$imageName[$i]','$postId')";
-        insertDB($sql);
+      if ($_FILES['upload_file']['name'][0]!="") {
+          for ($i=0; $i <sizeof($imageName) ; $i++) {
+            $sql = "INSERT INTO `post_image`(`imageId`, `fileLink`, `postId`) VALUES (null,'$imageName[$i]','$postId')";
+            insertDB($sql);
+          }
       }
 
-      for ($i=0; $i <sizeof($hash) ; $i++) {
-        $sqlTagSearch = "SELECT COUNT(tagId) AS numberOfRow from tags where tag = '$hash[$i]'";
-        $sqlTagId = "SELECT tagId from tags where tag = '$hash[$i]'";
-        $sqlTag = "INSERT INTO `tags`(`tagId`, `tag`) VALUES (null,'$hash[$i]')";
+      if (isset($hash)) {
+          for ($i=0; $i <sizeof($hash) ; $i++) {
+            $sqlTagSearch = "SELECT COUNT(tagId) AS numberOfRow from tags where tag = '$hash[$i]'";
+            $sqlTagId = "SELECT tagId from tags where tag = '$hash[$i]'";
+            $sqlTag = "INSERT INTO `tags`(`tagId`, `tag`) VALUES (null,'$hash[$i]')";
 
-        if (getCountFromDB($sqlTagSearch)[0]['numberOfRow']>0) {
+            if (getCountFromDB($sqlTagSearch)[0]['numberOfRow']>0) {
 
-          $tagIdArray = getDataFromDB($sqlTagId);
-          $tagId = $tagIdArray[0]['tagId'];
-          $sqlPostTag = "INSERT INTO `post_tag`(`postTagId`, `tagId`, `postId`) VALUES (null,'$tagId','$postId')";
-          insertDB($sqlPostTag);
-        }
-        else {
-          insertDB($sqlTag);
-          $tagIdArray = getDataFromDB($sqlTagId);
-          $tagId = $tagIdArray[0]['tagId'];
-          $sqlPostTag = "INSERT INTO `post_tag`(`postTagId`, `tagId`, `postId`) VALUES (null,'$tagId','$postId')";
-          insertDB($sqlPostTag);
-        }
+              $tagIdArray = getDataFromDB($sqlTagId);
+              $tagId = $tagIdArray[0]['tagId'];
+              $sqlPostTag = "INSERT INTO `post_tag`(`postTagId`, `tagId`, `postId`) VALUES (null,'$tagId','$postId')";
+              insertDB($sqlPostTag);
+            }
+            else {
+              insertDB($sqlTag);
+              $tagIdArray = getDataFromDB($sqlTagId);
+              $tagId = $tagIdArray[0]['tagId'];
+              $sqlPostTag = "INSERT INTO `post_tag`(`postTagId`, `tagId`, `postId`) VALUES (null,'$tagId','$postId')";
+              insertDB($sqlPostTag);
+            }
 
 
+          }
       }
 
-      for ($i=0; $i <sizeof($travelmates) ; $i++) {
-        $sqlMateSearch = "SELECT COUNT(userId) AS numberOfRow from user where userName = '$travelmates[$i]'";
-        $sqlMateId = "SELECT userId from user where userName = '$travelmates[$i]'";
+      if (isset($travelmates)) {
+          for ($i=0; $i <sizeof($travelmates) ; $i++) {
+            $sqlMateSearch = "SELECT COUNT(userId) AS numberOfRow from user where userName = '$travelmates[$i]'";
+            $sqlMateId = "SELECT userId from user where userName = '$travelmates[$i]'";
 
 
-        if (getCountFromDB($sqlMateSearch)[0]['numberOfRow']>0) {
+            if (getCountFromDB($sqlMateSearch)[0]['numberOfRow']>0) {
 
-          $mateIdArray = getDataFromDB($sqlMateId);
-          $mateId = $mateIdArray[0]['userId'];
-          $sqlMate = "INSERT INTO `travel_mate`(`travelMateId`, `postId`, `userId`) VALUES (null,'$postId','$mateId')";
-          insertDB($sqlMate);
-        }
-        else {
+              $mateIdArray = getDataFromDB($sqlMateId);
+              $mateId = $mateIdArray[0]['userId'];
+              $sqlMate = "INSERT INTO `travel_mate`(`travelMateId`, `postId`, `userId`) VALUES (null,'$postId','$mateId')";
+              insertDB($sqlMate);
+            }
+            else {
 
-        }
+            }
 
 
+          }
       }
 
 
