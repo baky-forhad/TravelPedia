@@ -28,8 +28,8 @@ include 'dbconnect.php';
 
     if(mysqli_query(getConnection(), $query)){
       echo "New records updated successfully";
-      mysqli_close(getConnection());
-      return true;
+      //mysqli_close(getConnection());
+      return mysqli_insert_id(getConnection());
     }
     return false;
   }

@@ -38,11 +38,12 @@
     </head>
     <body>
         <?php
+            session_start();
 
             include 'function.php';
-            session_start();
+
             $userName =$_SESSION['userName'];
-            if(!isloggedin())
+            if(isloggedin())
             {
             ?>
                 <div class="container-fluid">
