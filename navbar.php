@@ -8,10 +8,13 @@
     <title></title>
   </head>
   <body>
-    <?php function isLoggedInn()
+    <?php
+    //include 'function.php';
+    function isFine()
     {
+        return isloggedIn();
         //session_start();
-        return true;
+        //return true;
         //return ($_SESSION["IsloggedIn"] && isset($_SESSION["IsloggedIn"]) )==True ? True : False;
     } ?>
     <nav>
@@ -20,13 +23,14 @@
       </div>
       <ul>
         <li class="brand"> <a href="#">TravelPedia</a> </li>
-        <li class="gen"> <a href="#">Home</a> </li>
-        <li> <a href="#">About</a> </li>
-        <li> <a href="#">Services</a> </li>
-        <li> <a href="#">Portfolio</a> </li>
-        <li> <a href="#">Contact</a> </li>
-        <li class="noti"> <a href="#"> <span id="login"><?php
-        if (isLoggedInn()) {
+        <li class="gen"> <a href="home.php">Home</a> </li>
+        <li> <a href="profile.php">Profile</a> </li>
+        <li> <a href="post.php">Post</a> </li>
+        <li> <a href="createpost.php">Create Post</a> </li>
+
+        <li> <a href="#">Check In</a> </li>
+        <li class="noti"> <a href="index.php"> <span id="login"><?php
+        if (isFine()) {
           echo "Logout";
         }
         else {

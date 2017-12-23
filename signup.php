@@ -80,8 +80,7 @@
                 </h2>
                 <hr>
                 <br>
-                <form class="" action="signupValidate.php" method="post"
-                onSubmit="validSignUp()">
+                <form class="" action="signupValidate.php" method="post" onsubmit="return validSignUp()">
                     <table align="center" >
 
                         <tr>
@@ -147,6 +146,6 @@
                 <hr>
             </div>
         </div>
-        <script src="js/signupValidate.js"></script>
+        <script src="js/validateSignUp.js"></script>
     </body>
 </html>

@@ -2,7 +2,7 @@
 
     function isloggedIn()
     {
-        session_start();
+        //session_start();
         return ($_SESSION["IsloggedIn"] && isset($_SESSION["IsloggedIn"]) )==True ? True : False;
     }
 
@@ -15,7 +15,7 @@
 
     function isValidName($name)
     {
-        $len = strlen($name);
+        $len = strlen(trim($name));
         $valid= true;
         if($len<4)
         {

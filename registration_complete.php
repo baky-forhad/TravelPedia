@@ -1,4 +1,4 @@
-for<?php
+<?php
   session_start();
   $errorMsg="";
   if ($_SESSION["IsloggedIn"]!=True) {
@@ -72,18 +72,18 @@ for<?php
             </h2>
             <hr>
             <br>
-            <form class="" action="registration_complete.php" method="post">
+            <form class="" action="registration_complete.php" onsubmit="return valid();" method="post">
                 <table align="center">
                     <tr>
                       <td>
                         <div>
-                            <input type="text"  name="FirstName" value="" placeholder="First Name">
+                            <input type="text"  name="FirstName" id="firstName" value="" placeholder="First Name">
                         </div>
                       </td>
                     </tr>
                     <tr>
                         <td>
-                            <input type="text" name="LastName" value="" placeholder="Last Name">
+                            <input type="text" name="LastName" id="lastName" value="" placeholder="Last Name">
 
                         </td>
                     </tr>
@@ -95,8 +95,8 @@ for<?php
                     </tr>
                     <tr>
                         <td>
-                            <select class="" name="Day">
-                                <option value="">DD</option>
+                            <select class="" name="Day" id="day">
+                                <option value="0">DD</option>
                                 <?php
                                 for ($i=1; $i<32; $i++)
                                 {
@@ -107,8 +107,8 @@ for<?php
                                 }
                                 ?>
                             </select>
-                            <select class="" name="Month">
-                                <option value="">MM</option>
+                            <select class="" name="Month" id="month">
+                                <option value="0">MM</option>
                                 <?php
                                 for ($i=1; $i<13; $i++)
                                 {
@@ -117,8 +117,8 @@ for<?php
                                     </option>
                                 <?php } ?>
                             </select>
-                            <select class="" name="Year">
-                                <option value="">YYYY</option>
+                            <select class="" name="Year" id="year">
+                                <option value="0">YYYY</option>
                                 <?php
                                 for ($i=1900; $i<2018; $i++)
                                 {
@@ -142,7 +142,7 @@ for<?php
                     </tr>
                     <tr>
                         <td>
-                            <input type="text" name="Phone" value="" placeholder="Phone">
+                            <input type="text" name="Phone" id="phone" value="" placeholder="Phone">
                         </td>
                     </tr>
                     <tr>
@@ -156,10 +156,13 @@ for<?php
             <br><hr>
             <p align="center">
                 Want to fill these later??
-                <a id="join-link" href="signup.php"><b style="color:red">Skip Now!<b></a>
+                <a id="join-link" href="home.php"><b style="color:red">Skip Now!<b></a>
                 </p>
                 <hr>
         </div>
     </div>
+    <script src="js/reg_complete.js">
+
+    </script>
 </body>
 </html>

@@ -70,12 +70,13 @@
     </head>
     <body style="background-color: rgb(227, 231, 232)">
         <?php
+        session_start();
         include 'function.php';
         include 'dbconnect.php';
 
         //include 'navbar.php';
 
-        if(IsloggedIn())
+        if(isloggedIn())
         {
             $id;
             if(isset($_GET['id']))
