@@ -28,6 +28,13 @@
     </head>
     <body>
 
+      <?php
+
+      session_start();
+      $_SESSION['IsloggedIn'] = false;
+
+       ?>
+
         <div class="container-fluid bg">
             <div class="row">
                 <div class="col-md-2 offset-md-5">

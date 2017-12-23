@@ -30,7 +30,7 @@
                 {
                     if (isPasswordValid($password,$confirmpassword))
                     {
-                        $query .= "'$username', '$mail', NULL, NULL, '$password', NULL, '1',NULL,NULL,'N')";
+                        $query .= "'$username', '$mail', NULL, NULL, '$password', 'resource/profile.png', '1',NULL,NULL,'N',now(),NULL)";
                         $isValid=True;
                     }
                     else {
@@ -62,7 +62,7 @@
                     ?>
                     <script type="text/javascript">
                       alert("Username/Email already exist!");
-                      window.location = 'signup.php';
+                      //window.location = 'signup.php';
                     </script>
                     <?php
                   }

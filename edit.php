@@ -1,3 +1,108 @@
+<?php
+  //include 'function.php';
+  session_start();
+  include 'db_rw.php';
+  $errorMsg="";
+  if ($_SESSION["IsloggedIn"]!=True) {
+    header("Location:login.php");
+  }
+  else {
+    if ($_POST) {
+
+
+      $firstName = $_POST['FirstName'];
+      $lastName = $_POST['LastName'];
+
+      $phone = $_POST['Phone'];
+      $email = $_POST['Email'];
+
+
+      if (strlen(trim($firstName))>3 && strlen(trim($lastName))>3) {
+
+          if (preg_match("/^(?:\+?88)?01[15-9]\d{8}$/", $phone)) {
+            if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
+              // $profile = array('firstName' => $firstName ,'lastName' => $lastName,'gender'=>$gender,'phone'=>$phone,'email'=>$email);
+              // $_SESSION["profile"] = $profile;
+
+              if(isset($_FILES['profilePic']))
+              {
+                  $IsValid =True;
+                  //$imageName=$_POST["ImageName"];
+                  $file_name = $_FILES['profilePic']['name'];
+                  $file_size =$_FILES['profilePic']['size'];
+                  $file_tmp =$_FILES['profilePic']['tmp_name'];
+                  $file_type=$_FILES['profilePic']['type'];
+                  $file_ext=explode('.',$file_name);
+                  $file_ext=strtolower(end($file_ext));
+                  $validTypes= array("jpeg","jpg","png");
+                  if(!in_array($file_ext,$validTypes))
+                  {
+                      $IsValid=False;
+                  }
+                  // if(file_exists("images/".$imageName."jpeg"))
+                  // {
+                  //     $IsValid=False;
+                  // }
+                  // if(strlen($imageName)==0)
+                  // {
+                  //     $IsValid=False;
+                  // }
+
+                  if($IsValid)
+                  {
+                      move_uploaded_file($file_tmp,"images/".$_SESSION["userName"].".jpeg");
+                      $_SESSION['file'] = "images/".$_SESSION["userName"].".jpeg";
+                      $pic = "images/".$_SESSION["userName"].".jpeg";
+                      $userName = $_SESSION ['userName'] ;
+                      $sql = "UPDATE `user` SET `email`='$email',`firstName`='$firstName',`lastName`='$lastName',`profilePicLink`='$pic',`phone`='$phone' where `userName`='$userName'";
+
+                      updateDB($sql);
+
+                      header("Location:profile.php");
+
+
+
+                  }
+                  else
+                  {
+                    $userName = $_SESSION ['userName'] ;
+                    $sql = "UPDATE `user` SET `email`='$email',`firstName`='$firstName',`lastName`='$lastName',`phone`='$phone' where `userName`='$userName'";
+
+                    updateDB($sql);
+
+                    header("Location:profile.php");
+
+                  }
+
+
+              }
+              else {
+                $userName = $_SESSION ['userName'] ;
+                $sql = "UPDATE `user` SET `email`='$email',`firstName`='$firstName',`lastName`='$lastName',`phone`='$phone' where `userName`='$userName'";
+
+                updateDB($sql);
+
+                header("Location:profile.php");
+              }
+
+
+            }
+            else {
+              $errorMsg = "Invalid email";
+            }
+          }
+          else {
+            $errorMsg = "Invalid Phone Number!";
+          }
+
+      }
+      else {
+        $errorMsg = "Name not valid!";
+      }
+    }
+  }
+?>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -100,12 +205,12 @@
                           </h1>
                             <hr>
                             <br>
-                            <form class="" action="updateValidate.php" method="post">
+                            <form class="" action="edit.php" method="post" onsubmit="return valid();" enctype="multipart/form-data">
                               <br />
                               <fieldset>
                                   <legend><b>USER | EDIT</b></legend>
                                   <br/>
-                                  <form>
+                                      <?php echo $errorMsg; ?>
                                       <table width="100%" cellpadding="0" cellspacing="0" border="0">
                                           <tr>
                                               <td width="100"></td>
@@ -123,14 +228,14 @@
                                           <tr>
                                               <td>first Name</td>
                                               <td>:</td>
-                                              <td><input name="firstname" type="text" value="<?php echo $firstName?>"></td>
+                                              <td><input name="FirstName" id="firstName" type="text" value="<?php echo $firstName?>"></td>
                                               <td></td>
                                           </tr>
                                           <tr><td colspan="4"><hr /></td></tr>
                                           <tr>
                                               <td>Last Name</td>
                                               <td>:</td>
-                                              <td><input name="lastname" type="text" value="<?php echo $lastName?>"></td>
+                                              <td><input name="LastName" id="lastName" type="text" value="<?php echo $lastName?>"></td>
                                               <td></td>
                                           </tr>
                                           <tr><td colspan="4"><hr /></td></tr>
@@ -138,8 +243,18 @@
                                               <td>Email</td>
                                               <td>:</td>
                                               <td>
-                                                  <input name="email" type="text" value="<?php echo $email?>">
+                                                  <input name="Email" id="email" type="text" value="<?php echo $email?>">
                                                   <abbr title="hint: sample@example.com"><b>i</b></abbr>
+                                              </td>
+                                              <td></td>
+                                          </tr>
+                                          <tr><td colspan="4"><hr /></td></tr>
+                                          <tr>
+                                              <td>Phone</td>
+                                              <td>:</td>
+                                              <td>
+                                                  <input name="Phone" type="text" id="phone" value="<?php echo $phone?>">
+                                                  <abbr title="hint: 01700000000"><b>i</b></abbr>
                                               </td>
                                               <td></td>
                                           </tr>
@@ -151,7 +266,7 @@
                                                   <table>
                                                       <tr>
                                                           <td><img width="48" src="<?php echo $pic?>" /></td>
-                                                          <td><input type="file"></td>
+                                                          <td><input type="file" name="profilePic" value=""></td>
                                                       </tr>
                                                   </table>
                                               </td>
@@ -162,7 +277,7 @@
                                       </table>
                                       <hr />
                                       <input type="submit" value="Save">
-                                  </form>
+
                               </fieldset>
                             </form>
                             <br><hr>
@@ -182,6 +297,10 @@
             header("Location:login.php");
         }
         ?>
+
+        <script src="js/reg_pic.js">
+
+        </script>
 
     </body>
 </html>

@@ -78,6 +78,7 @@
     </head>
     <body style="background-color: rgb(227, 231, 232)">
         <?php
+        session_start();
         include 'function.php';
         //include 'navbar.php';
 

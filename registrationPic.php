@@ -87,7 +87,7 @@
       <br>
 
 
-        <form class="" action="registrationPic.php" method="post" enctype="multipart/form-data">
+        <form class="" action="registrationPic.php" method="post"  enctype="multipart/form-data">
 
 
 
