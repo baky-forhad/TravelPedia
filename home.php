@@ -140,10 +140,12 @@
 
                                         foreach ($userArr as $user) {
                                             $name =$user['userName'];
+
                                         }
                                     ?>
 
-            						by <a href="profile.php"> <?php echo $name; ?></a>
+            						by <a href="<?php echo "profile.php?id=".$id ?>">
+                                         <?php echo $name; ?></a>
             					</p>
                                 <p>
 

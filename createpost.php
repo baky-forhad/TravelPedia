@@ -385,7 +385,9 @@
 
 
         </script>
-        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBcYc38cBGLlVJrFE-WTn_K3D2ACzAGvOc&libraries=places&callback=activatePlacesSearch"></script>
+        <script
+         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBcYc38cBGLlVJrFE-WTn_K3D2ACzAGvOc&libraries=places&callback=activatePlacesSearch"
+        ></script>
 
         <script src="js/postValidate.js"></script>
 
