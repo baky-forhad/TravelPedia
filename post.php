@@ -243,7 +243,7 @@
                                 </button>
                                    <?php echo $key['points'] ?>
                                   &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp;
-                                  <button type="button" id="edit" name="button" value="<?php echo $postid ?>">
+                                  <button type="button" id="edit" name="button" onclick="test()" value="<?php echo $postid ?>">
                                     <i class="fa fa-pencil-square-o" aria-hidden="true">
                                         edit post
                                     </i>
@@ -306,23 +306,8 @@
             xmlhttp.open("GET", url,true);
             xmlhttp.send();
           }
-          function showHint1() {
-            //makeString();
-            //console.log($('#chips-autocomplete2').material_chip('data'));
-            var  xmlhttp = new XMLHttpRequest();
-            var str=document.getElementById('edit').value;
-            //document.getElementById("spinner").style.visibility= "visible";
-            xmlhttp.onreadystatechange = function() {
-              //alert(xmlhttp.rxmlhttpeadyState);
-              if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-                //document.getElementById("spinner").style.visibility= "hidden";
-
-              }
-            };
-            var url="delete.php?postId="+str;
-            //alert(url);
-            xmlhttp.open("GET", url,true);
-            xmlhttp.send();
+          function test() {
+            document.location = "edit_post.php?postId="+document.getElementById('edit').value;
           }
         </script>
 

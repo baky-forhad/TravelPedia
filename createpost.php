@@ -82,7 +82,7 @@
         include 'function.php';
         //include 'navbar.php';
 
-        if(IsloggedIn())
+        if(isloggedIn())
         {
         ?>
 

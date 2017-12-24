@@ -8,6 +8,11 @@
 
     $a = getJSONFromDB($sql);
 
+    // if (isset($_SESSION['postId'])) {
+    //   $postId
+    // }
+    // $sql = "SELECT "
+
     echo $a;
   }
   else {
