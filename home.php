@@ -46,6 +46,9 @@
             if(isloggedIn())
             {
                 $userName =$_SESSION['userName'];
+                $userId =$_SESSION['userId'];
+                $place=array();
+                $locid=array();
             ?>
                 <div class="container-fluid">
 
@@ -257,10 +260,68 @@
                         <?php } ?>
                         </div>
 
-                        <div class="col-md-4" style="background-color:black;">
-                            <div class="col-md-10 offset-md-1" style="background-color:red;">
-                            SUGSTION
-                                <br><br><br><br><br><br><br><br><br><br><br>
+                        <div class="col-md-4" >
+                            <div class="col-md-10 offset-md-1" >
+                                <?php
+                                $sql ="select postId,locationId from post where userId='$userId'";
+                                $UserPost=getDataFromDB($sql);
+                                foreach ($UserPost as $post)
+                                {
+                                   $postId=$post['postId'];
+                                   $sql ="select userId from travel_mate where postId='$postId' and userId!='$userId'";
+                                   $travelmate=getDataFromDB($sql);
+                                   foreach ($travelmate as $mate)
+                                   {
+                                       $mateId=$mate['userId'];
+                                       $sql ="select locationId from post where userId='$mateId'";
+                                       $location = getDataFromDB($sql);
+                                       foreach ($location as $loc)
+                                       {
+                                           $locationid = $loc['locationId'];
+                                           $locid[]=$locationid;
+
+
+
+                                       }
+
+                                   }
+
+                               }
+
+                                //$finalSuggs = array_unique($place);
+                                $locationid= array_unique($locid);
+                                foreach ($locationid as $loc=>$location) {
+                                    $sql ="select placeName from location where locationID='$location'";
+                                    $suggestions = getDataFromDB($sql);
+                                    foreach ($suggestions as $key) {
+                                        //$place[]= $key['placeName'];?>
+                                        <i class="fa fa-bullhorn" aria-hidden="true">
+                                            <a href="<?php echo "locationimage.php?locationID=".$location ?>">
+                                                <?php echo $key['placeName'] ?>
+                                            </a>
+
+                                        </i>
+                                        <?php
+                                    }
+                                }
+
+                                //print_r($finalSuggs);
+                                //print_r($finalSuggs);
+
+
+
+                                //for($i=0;$i<sizeof($finalSuggs);$i++)
+                                {
+                                    ?>
+
+                                <?php
+                                }
+
+
+                           ?>
+
+
+
                             </div>
 
                         </div>
