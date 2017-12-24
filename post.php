@@ -42,11 +42,12 @@
             session_start();
 
             include 'function.php';
-            $userId = $_SESSION['userId'];
 
-            $userName =$_SESSION['userName'];
-            if(isloggedin())
+            if(isloggedIn())
             {
+              $userId = $_SESSION['userId'];
+
+              $userName =$_SESSION['userName'];
             ?>
                 <div class="container-fluid">
 
@@ -278,6 +279,9 @@
                 </div>
 
             <?php
+            }
+            else {
+              header('Location:login.php');
             }
         ?>
 
