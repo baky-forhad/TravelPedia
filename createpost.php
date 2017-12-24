@@ -246,7 +246,7 @@
 
                 });
 
-
+                console.log(loc);
 
 
             }

@@ -56,7 +56,7 @@
           </div>
           <div align="center" class="modal-body">
             <br><br>
-            <input type="text" id="location" name="locationID" value="" style="width:60%; height: 80px">
+            <input type="text" id="location1" name="locationID" value="" style="width:60%; height: 80px">
             <br><br>
             <input type="submit" onclick="showHint()" name="" value="CheckIn" style="width:20%; height: 50px">
             <br><br><br><br><br><br><br>
@@ -78,7 +78,7 @@
     var loc = {};
     function activatePlacesSearch()
     {
-        var input = document.getElementById('location');
+        var input = document.getElementById('location1');
         var autocomplete = new google.maps.places.Autocomplete(input);
         google.maps.event.addListener(autocomplete, 'place_changed', function ()
         {
