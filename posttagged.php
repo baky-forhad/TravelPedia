@@ -42,9 +42,10 @@
 
             include 'function.php';
 
-
             if(isloggedIn())
             {
+                $userId=$_SESSION['userId'];
+
                 $userName =$_SESSION['userName'];
             ?>
                 <div class="container-fluid">
@@ -115,7 +116,7 @@
                     <?php
                         include 'db_rw.php';
 
-                        $sql= "SELECT * from POST WHERE `delete_status`=0";
+                        $sql= "SELECT * FROM post as p INNER JOIN `travel_mate` as t ON t.postid = p.postId and t.userId='$userId' and p.`delete_status`=0";
                         $posts=getDataFromDB($sql);
 
                     ?>
@@ -273,7 +274,7 @@
 
             <?php
             }
-            else {
+            else{
                 header('Location:login.php');
             }
         ?>

@@ -3,7 +3,16 @@
     function isloggedIn()
     {
         //session_start();
-        return ($_SESSION["IsloggedIn"] && isset($_SESSION["IsloggedIn"]) )==True ? True : False;
+        //return ($_SESSION["IsloggedIn"] && isset($_SESSION["IsloggedIn"]) )==True ? True : False;
+        if(isset($_SESSION["IsloggedIn"]))
+        {
+            if($_SESSION["IsloggedIn"])
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
 
 

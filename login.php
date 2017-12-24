@@ -85,7 +85,7 @@
             <br>
             <?php
                 session_start();
-                $_SESSION["IsloggedIn"]=False;
+                $_SESSION["IsloggedIn"]=false;
 
             ?>
 
