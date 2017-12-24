@@ -116,7 +116,7 @@
                     <?php
                         include 'db_rw.php';
 
-                        $sql= "SELECT * from POST WHERE userId='$userId'";
+                        $sql= "SELECT * from POST WHERE userId='$userId' and `delete_status`=0";
                         $posts=getDataFromDB($sql);
 
                     ?>
@@ -242,14 +242,14 @@
                                 </button>
                                    <?php echo $key['points'] ?>
                                   &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp;
-                                  <button type="button" name="button">
+                                  <button type="button" id="edit" name="button" value="<?php echo $postid ?>">
                                     <i class="fa fa-pencil-square-o" aria-hidden="true">
                                         edit post
                                     </i>
 
                                  </button>
                                  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp;
-                                 <button type="button" name="button">
+                                 <button type="button" id="delete" name="button" onclick="showHint()" value="<?php echo $postid ?>">
                                    <i class="fa fa-trash" aria-hidden="true">
                                        delete post
                                    </i>
@@ -280,6 +280,47 @@
             <?php
             }
         ?>
+
+        <script type="text/javascript">
+          function showHint() {
+            //makeString();
+            //console.log($('#chips-autocomplete2').material_chip('data'));
+            var  xmlhttp = new XMLHttpRequest();
+            var str=document.getElementById('delete').value;
+            //document.getElementById("spinner").style.visibility= "visible";
+            xmlhttp.onreadystatechange = function() {
+              //alert(xmlhttp.rxmlhttpeadyState);
+              if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                //document.getElementById("spinner").style.visibility= "hidden";
+                alert("Your Post Has been deleted!");
+                document.location = "post.php";
+
+              }
+            };
+            var url="delete.php?postId="+str;
+            //alert(url);
+            xmlhttp.open("GET", url,true);
+            xmlhttp.send();
+          }
+          function showHint1() {
+            //makeString();
+            //console.log($('#chips-autocomplete2').material_chip('data'));
+            var  xmlhttp = new XMLHttpRequest();
+            var str=document.getElementById('edit').value;
+            //document.getElementById("spinner").style.visibility= "visible";
+            xmlhttp.onreadystatechange = function() {
+              //alert(xmlhttp.rxmlhttpeadyState);
+              if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                //document.getElementById("spinner").style.visibility= "hidden";
+
+              }
+            };
+            var url="delete.php?postId="+str;
+            //alert(url);
+            xmlhttp.open("GET", url,true);
+            xmlhttp.send();
+          }
+        </script>
 
     </body>
 </html>
